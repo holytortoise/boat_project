@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from calendar import HTMLCalendar
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    calendar = HTMLCalendar.formatyear(2018)
+    context_dict={'calendar':calendar}
+    return render(request, 'index.html',context_dict)
