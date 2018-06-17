@@ -15,7 +15,7 @@ from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+TEMPLATE_RESERVIERUNG_DIR = os.path.join(BASE_DIR, 'reservierung/templates/reservierung')
 
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'boat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_RESERVIERUNG_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
