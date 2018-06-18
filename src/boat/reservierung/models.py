@@ -18,8 +18,8 @@ class Boot(models.Model):
         verbose_name_plural = "Boote"
 
 class Reservierung(models.Model):
-    reserviert_von = models.ForeignKey(User, related_name="Reserviert")
-    reserviertesBoot = models.ForeignKey(Boot)
+    reserviert_von = models.ForeignKey(User, related_name="Reserviert",on_delete=models.CASCADE)
+    reserviertesBoot = models.ForeignKey(Boot,on_delete=models.CASCADE)
     a_Datum = models.DateField("Start Datum", default=datetime.date.today)
     e_Datum = models.DateField("End Datum", default=datetime.date.today)
     a_Zeit = models.TimeField("Reserviert von")
