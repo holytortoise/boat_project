@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% block titel %}Reservierungsformular{% endblock titel %}
+{% block head %}
+  <script src="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.theme.css' %}">
+  <link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.css' %}">
+  <link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.theme.css' %}">
+  <link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.structure.css' %}">
+  <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
+  <script>
+    $(function(){
+      $("#id_anfangsDatum").datepicker({dateFormat:'yy-mm-dd'});
+      $("#id_endDatum").datepicker({dateFormat: 'yy-mm-dd'});
+    });
+  </script>
+{% endblock head %}
+{% block content %}
+  <div class="wrapper">
+  <h1 class="top">Reservierung</h1>
+</div>
+{% if reserv is not None %}
+<div class="wrapper">
+  <h3 class="top"  style="color:red;">Es existiert bereits eine Reservierung</h3>
+  <table class="table table-bordered tabelle">
+    <thead>
+      <th>Von</th>
+      <th>Für</th>
+      <th>Grund</th>
+      <th>Beginn</th>
+      <th>Ende</th>
+      <th>Details</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ reserv.reserviert_von }}</td>
+        <td id="td_nr">{{ reserv.reserviert_für }}</td>
+        <td id="td_user">{{ reserv.reservierungsGrund }}</td>
+        <td id="td_anfang">{{ reserv.anfangsDatum }} {{reserv.anfangsZeit}}</td>
+        <td id="td_ende">{{ reserv.endDatum}} {{ reserv.endZeit}}</td>
+        <td id="td_details"><a href="{% url 'reservierung:reservierung-detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% if free_rooms is None %}
+{% else %}
+{% for room in free_rooms  %}
+    {% if forloop.first %}
+    <div class="wrapper">
+    <h3 class="top">Folgende Räume sind Frei</h3>
+    <table class="table table-bordered tabelle">
+      <thead>
+        <th>Raum</th>
+      </thead>
+      <tbody>
+
+    {% endif %}
+    <tr>
+      <td>{{ room.nummer }}.{{ room.name }}</td>
+    </tr>
+    {% if forloop.last %}
+    </tbody>
+  </table>
+    </div>
+    {% endif %}
+    {% empty %}
+      <h3>Keine Freien Räume für diesen Zeitraum</h3>
+{% endfor %}
+{% endif %}
+  <form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" class="btn btn-primary" name="reservieren" value="Reservieren">
+  </form>
+
+{% endblock content %}

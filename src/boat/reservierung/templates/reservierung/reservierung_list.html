@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block titel %}Liste{% endblock titel %}
+{% block head %}
+{% endblock head %}
+{% block content %}
+
+  <h1>Liste der Reservierungen</h1>
+  {% for reservierung in reservierungen  %}
+      <h3>{{reservierung}}</h3>
+  {% endfor %}
+
+{% endblock content %}
