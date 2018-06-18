@@ -33,9 +33,9 @@
           <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
           {% endif %} {% if user.is_authenticated %}
           <li><a href="#">#</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+          <li><a href="{% url 'account:logout' %}"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
           {% else %}
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+          <li><a href="{% url 'account:login' %}"><span class="glyphicon glyphicon-user"></span>Login</a></li>
           {% endif %}
 
         </ul>
