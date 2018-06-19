@@ -16,7 +16,7 @@ from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_RESERVIERUNG_DIR = os.path.join(BASE_DIR, 'reservierung/templates/reservierung')
-
+TEMPLATE_ACCOUNT_DIR = os.path.join(BASE_DIR,'account/templates/account')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # Quick-start development settings - unsuitable for production
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'boat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_RESERVIERUNG_DIR,],
+        'DIRS': [TEMPLATE_RESERVIERUNG_DIR,TEMPLATE_ACCOUNT_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,3 +133,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,"static_root/")
 STATICFILES_DIRS = [STATIC_DIR,]
+
+LOGIN_REDIRECT_URL = 'reservierung:index'
+LOGOUT_REDIRECT_URL = 'reservierung:index'
