@@ -7,7 +7,8 @@
 
   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
-
+  <script src="{% static 'jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
   {% block head %}{% endblock head %}
 </head>
 
@@ -32,7 +33,7 @@
           {% if user.is_superuser %}
           <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
           {% endif %} {% if user.is_authenticated %}
-          <li><a href="#">#</a></li>
+          <li><a href="#">User</a></li>
           <li><a href="{% url 'account:logout' %}"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
           {% else %}
           <li><a href="{% url 'account:login' %}"><span class="glyphicon glyphicon-user"></span>Login</a></li>
