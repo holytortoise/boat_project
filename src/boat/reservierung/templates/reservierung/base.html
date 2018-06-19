@@ -31,7 +31,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_superuser %}
-          <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
+          <li><a href="{% url 'admin:index' %}">Admin</a></li>
           {% endif %} {% if user.is_authenticated %}
           <li><a href="#">User</a></li>
           <li><a href="{% url 'account:logout' %}"><span class="glyphicon glyphicon-user"></span>Logout</a></li>
