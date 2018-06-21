@@ -46,7 +46,6 @@ def index(request):
         boat_return = []
         reservierungen = models.Reservierung.objects.filter(
             reserviertesBoot=boat).order_by('a_Datum')
-        )
         for reservierung in reservierungen:
             if reservierung.a_Datum.isocalendar()[1] < woche and
                 woche < reservierung.e_Datum.isocalendar()[1]:
@@ -63,7 +62,7 @@ def index(request):
     context_dict = {'boats_return':boats_return,'reserv':reservierungen,'woche':woche,
     'jahr':jahr,'current_week':current_week,'current_year':current_year,
     'is_week':is_week,'start':start,'end':end}
-    return render(request, 'index.html', context_dict)    
+    return render(request, 'index.html', context_dict)
 
 
     return render(request, 'index.html')
