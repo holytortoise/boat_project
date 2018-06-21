@@ -100,7 +100,7 @@ def reservierung_form(request):
     nutzer = request.user
     moeglich = False
     if request.method == 'POST':
-        forms = forms.ReservierungForm(data=request.post)
+        form = forms.ReservierungForm(data=request.post)
         if form.is_valid():
             free_boats = []
             reservierungen = models.Reservierung.objects.filter(
