@@ -170,7 +170,6 @@ def reservierung_user(request):
         boat_return = []
         reservierungen = models.Reservierung.objects.filter(
             reserviertesBoot=boat).order_by('a_Datum')
-        )
         for reservierung in reservierungen:
             if reservierung.reserviert_von == user:
                 boat_return.append(boat)
