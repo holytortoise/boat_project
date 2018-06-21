@@ -26,41 +26,41 @@
   <h3 class="top"  style="color:red;">Es existiert bereits eine Reservierung</h3>
   <table class="table table-bordered tabelle">
     <thead>
-      <th>Von</th>
-      <th>Für</th>
-      <th>Grund</th>
+      {% if user.is_superuser %}
+                <th>Von</th>
+      {% endif %}
       <th>Beginn</th>
       <th>Ende</th>
       <th>Details</th>
     </thead>
     <tbody>
       <tr>
+        {% if user.is_superuser %}
         <td>{{ reserv.reserviert_von }}</td>
-        <td id="td_nr">{{ reserv.reserviert_für }}</td>
-        <td id="td_user">{{ reserv.reservierungsGrund }}</td>
-        <td id="td_anfang">{{ reserv.anfangsDatum }} {{reserv.anfangsZeit}}</td>
-        <td id="td_ende">{{ reserv.endDatum}} {{ reserv.endZeit}}</td>
-        <td id="td_details"><a href="{% url 'reservierung:reservierung-detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
+        {% endif %}
+        <td id="td_anfang">{{ reserv.a_Datum }} {{reserv.a_Zeit}}</td>
+        <td id="td_ende">{{ reserv.e_Datum}} {{ reserv.e_Zeit}}</td>
+        <td id="td_details"><a href="{% url 'reservierung:detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
       </tr>
     </tbody>
   </table>
 </div>
 {% endif %}
-{% if free_rooms is None %}
+{% if free_boats is None %}
 {% else %}
-{% for room in free_rooms  %}
+{% for boat in free_boats  %}
     {% if forloop.first %}
     <div class="wrapper">
-    <h3 class="top">Folgende Räume sind Frei</h3>
+    <h3 class="top">Folgende Boote sind Frei</h3>
     <table class="table table-bordered tabelle">
       <thead>
-        <th>Raum</th>
+        <th>Boot</th>
       </thead>
       <tbody>
 
     {% endif %}
     <tr>
-      <td>{{ room.nummer }}.{{ room.name }}</td>
+      <td>{{ boat.name }}</td>
     </tr>
     {% if forloop.last %}
     </tbody>
@@ -68,7 +68,7 @@
     </div>
     {% endif %}
     {% empty %}
-      <h3>Keine Freien Räume für diesen Zeitraum</h3>
+      <h3>Keine Freien Boote für diesen Zeitraum</h3>
 {% endfor %}
 {% endif %}
   <form method="post">

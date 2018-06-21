@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load account_tags %}
+{% block titel %}Reservierungsdetails{% endblock titel %}
+{% block content %}
+
+  <h2>Reserviertes Boot: {{reservierung.reserviertesBoot}}</h2>
+  {% if user.is_superuser  %}
+        <h3>Reserviert von: {{reservierung.reserviert_von.last_name}}</h3>
+  {% endif %}
+  <h3>Von {{reservierung.a_Datum|date:"d.m.o"}} {{reservierung.a_Zeit|time:"H:i"}} bis
+  {{reservierung.e_Datum|date:"d.m.o"}} {{reservierung.e_Zeit|time:"H:i"}}</h3>
+  {% if user|is_creator:reservierung.reserviert_von or user.is_superuser %}
+    <a class="btn btn-danger" href="{% url 'reservierung:delete' pk=reservierung.id %}"><span class="glyphicon glyphicon-trash"></span> Löschen</a>
+  {% endif %}
+
+
+{% endblock content %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block titel %}{{user.username}}{% endblock titel %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
+{% endblock head %}
+{% block content %}
+<div class="wrapper">
+<h1 class="last">{{user.first_name}} {{user.last_name}}</h1>
+</div>
+
+{% for boat in boats_return  %}
+  {% for reserv in boat  %}
+    {% if forloop.first %}
+    <div class="wrapper">
+      <h2 class="top">{{ reserv.reserviertesBoot }}</h2>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <th>Anfang</th>
+          <th>Ende</th>
+          <th>Täglich</th>
+          <th>Details</th>
+        </thead>
+        <tbody>
+  {% endif %}
+  <tr>
+    <td id="r_anfang">{{ reserv.anfangsDatum|date:"d.m.o"}} {{ reserv.anfangsZeit|date:"H:i" }}</td>
+    <td id="r_ende">{{ reserv.endDatum|date:"d.m.o"}} {{ reserv.endZeit|date:"H:i" }}</td>
+
+    <td id="r_details"><a href="{% url 'reservierung:detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
+  </tr>
+  {% if forloop.last %}
+  </tbody>
+</table>
+  {% endif %}
+  {% endfor %}
+{% endfor %}
+<div class="wrapper">
+<h3 id='password_change'><a href="{% url 'account:password-change' %}">Passwort ändern</a></h3>
+</div>
+
+{% endblock content %}

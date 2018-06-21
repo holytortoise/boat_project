@@ -10,6 +10,30 @@ import datetime
 from . import models
 from . import forms
 # Create your views here.
+
+class ReservierungsList(LoginRequiredMixinListView):
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    queryset = models.Reservierung.objects.order_by('a_Datum','a_Zeit')
+    context_object_name = 'reservierungen'
+
+
+class ReservierungDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'account:login'
+    redirect_field_name : 'redirect_to'
+    model = models.Reservierung
+    success_url = reverse_lazy('reservierung:reservierung-list')
+    template_name = 'reservierung/reservierung_delete.html'
+
+
+class ReservierungDetail(LoginRequiredMixin, DetailView):
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = models.Reservierung
+    context_object_name = 'reservierung'
+    template_name = 'reservierung/reservierung_detail.html'
+
+@login_required(login_url='account:login')
 def index(request):
     current_week = datetime.date.today().isocalendar()[1]
     current_year = datetime.date.today().isocalendar()[0]
@@ -68,12 +92,7 @@ def index(request):
 
     return render(request, 'index.html')
 
-class ReservierungsList(ListView):
-    queryset = models.Reservierung.objects.order_by('a_Datum','a_Zeit')
-    context_object_name = 'reservierungen'
-
-
-
+@login_required(login_url='account:login')
 def reservierung_form(request):
     """
     Diese Funktion ist für die Reservierung zuständig
@@ -164,7 +183,7 @@ def reservierung_form(request):
     return render(request, 'reservierung/reservierung_form.html',{'form':form,
         'reserv':reserv,'free_boats':free_boats,})
 
-
+@login_required(login_url='account:login')
 def reservierung_user(request):
     user = request.user
     boats = models.Boat.objects.all()
