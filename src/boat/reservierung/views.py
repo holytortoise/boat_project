@@ -11,7 +11,7 @@ from . import models
 from . import forms
 # Create your views here.
 
-class ReservierungsList(LoginRequiredMixinListView):
+class ReservierungsList(LoginRequiredMixin, ListView):
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
     queryset = models.Reservierung.objects.order_by('a_Datum','a_Zeit')
@@ -22,7 +22,7 @@ class ReservierungDelete(LoginRequiredMixin, DeleteView):
     login_url = 'account:login'
     redirect_field_name : 'redirect_to'
     model = models.Reservierung
-    success_url = reverse_lazy('reservierung:reservierung-list')
+    success_url = reverse_lazy('reservierung:list')
     template_name = 'reservierung/reservierung_delete.html'
 
 
