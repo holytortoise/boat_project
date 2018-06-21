@@ -44,7 +44,7 @@ def index(request):
     start = start.strftime('%d.%m')
     end = end.strftime('%d.%m')
 
-    boats = models.Boat.objects.all()
+    boats = models.Boot.objects.all()
     boats_return = []
     for boat in boats:
         boat_return = []
