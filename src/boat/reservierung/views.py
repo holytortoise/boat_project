@@ -98,7 +98,7 @@ def reservierung_form(request):
     Diese Funktion ist für die Reservierung zuständig
     """
     nutzer = request.user
-    moeglich
+    moeglich = False
     if request.method == 'POST':
         forms = forms.ReservierungForm(data=request.post)
         if form.is_valid():
