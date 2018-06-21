@@ -188,7 +188,7 @@ def reservierung_form(request):
 @login_required(login_url='account:login')
 def reservierung_user(request):
     user = request.user
-    boats = models.Boat.objects.all()
+    boats = models.Boot.objects.all()
     boats_return = []
 
     for boat in boats:
