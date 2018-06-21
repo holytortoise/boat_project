@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  {% if user.is_authenticated  %}
   <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
       <div class="navbar-header">
@@ -43,6 +44,7 @@
       </div>
     </div>
   </nav>
+    {% endif %}
   <div class="container">
     <div class="jumbotron">
       {% block content %}
