@@ -92,7 +92,7 @@ def reservierung_form(request):
                         if reservierung.e_Datum < form.cleaned_data.get("a_Datum"):
                             moeglich = True
                         elif reservierung.e_Datum == form.cleaned_data.get("a_Datum"):
-                            if reservierung.e_Zeit <= form.cleaned_data.get("a_Zeit")
+                            if reservierung.e_Zeit <= form.cleaned_data.get("a_Zeit"):
                                 moeglich = True
                             elif reservierung.a_Zeit >= form.cleaned_data.get("e_Zeit"):
                                 moeglich = True
