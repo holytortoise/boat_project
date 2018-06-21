@@ -47,13 +47,10 @@ def index(request):
         reservierungen = models.Reservierung.objects.filter(
             reserviertesBoot=boat).order_by('a_Datum')
         for reservierung in reservierungen:
-            if reservierung.a_Datum.isocalendar()[1] < woche and
-                woche < reservierung.e_Datum.isocalendar()[1]:
+            if reservierung.a_Datum.isocalendar()[1] < woche and woche < reservierung.e_Datum.isocalendar()[1]:
                 boat_reaturn.append(reservierung)
-            if ((reservierung.a_Datum.isocalendar()[1] < woche and
-                reservierung.a_Datum.isocalendar()[0] == jahr)
-                or (reservierung.e_Datum.isocalendar()[1] == woche and
-                reservierung.e_Datum.isocalendar()[0] == jahr)):
+            if ((reservierung.a_Datum.isocalendar()[1] < woche and reservierung.a_Datum.isocalendar()[0] == jahr)
+                or (reservierung.e_Datum.isocalendar()[1] == woche and reservierung.e_Datum.isocalendar()[0] == jahr)):
                 boat_return.append(reservierung)
         if len(boat_return) != 0:
             boats_return.append(boat_return)
@@ -87,8 +84,7 @@ def reservierung_form(request):
                 reserviertesBoot=form.cleaned_data.get("reserviertesBoot"))
             if reservierungen.exists():
                 for reservierung in reservierungen:
-                    if reservierung.a_Datum < form.cleaned_data.get("a_Datum") and
-                        form.cleaned_data.get("a_Datum") < reservierung.e_Datum:
+                    if reservierung.a_Datum < form.cleaned_data.get("a_Datum") and form.cleaned_data.get("a_Datum") < reservierung.e_Datum:
                         moeglich = False
                         reserv = reservierung
                         break
@@ -133,8 +129,7 @@ def reservierung_form(request):
                         if boat_reservs.exists():
                             free_boats = False
                             for boat_reserv in boats_reservs:
-                                if boat_reserv.a_Datum < form.cleaned_data.get("a_Datum") and
-                                    form.cleaned_data.get("a_Datum") < boat_reserv.e_Datum:
+                                if boat_reserv.a_Datum < form.cleaned_data.get("a_Datum") and form.cleaned_data.get("a_Datum") < boat_reserv.e_Datum:
                                     free_boat = False
                                     break
                                 else:
