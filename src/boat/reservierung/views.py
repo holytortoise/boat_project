@@ -174,4 +174,4 @@ def reservierung_user(request):
             if reservierung.reserviert_von == user:
                 boat_return.append(boat)
         boats_return.append(boat_return)
-    return render(request, 'reservierung/reservierung_user.html',{'user':user,'boats_return',boats_return})
+    return render(request, 'reservierung/reservierung_user.html',{'user':user,'boats_return':boats_return})
