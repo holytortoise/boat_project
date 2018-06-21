@@ -135,7 +135,7 @@ def reservierung_form(request):
                                 else:
                                     if boat_reserv.e_Datum < form.cleaned_data.get("a_Datum"):
                                         free_boat = True
-                                    elif boat_reserv.e_Datum == form.cleaned_Data.get("a_Datum")
+                                    elif boat_reserv.e_Datum == form.cleaned_Data.get("a_Datum"):
                                         if boat_reserv.e_Zeit <= form.cleaned_data.get("a_Zeit"):
                                             free_boat = True
                                         else:
