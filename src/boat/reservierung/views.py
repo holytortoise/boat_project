@@ -99,6 +99,8 @@ def reservierung_form(request):
     """
     nutzer = request.user
     moeglich = False
+    reserv = None
+    free_boats = None
     if request.method == 'POST':
         form = forms.ReservierungForm(data=request.post)
         if form.is_valid():
