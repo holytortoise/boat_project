@@ -1,0 +1,93 @@
+table {
+  table-layout: auto;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.top {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  align-self: center;
+  justify-self: center;
+}
+
+.kw {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  justify-self: center;
+  margin: auto;
+}
+
+.last {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  justify-self: end;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.next {
+  grid-column-start: 4;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  justify-self: start;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.top-right {
+  grid-column-start: 3;
+  grid-colum-end: 3;
+  grid-row: 1;
+  justify-self: center;
+  margin: auto;
+}
+
+.top-left {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.form {
+  display: grid;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 3;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.r_grund {
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+}
+
+.tabelle {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+
+.tablle-frei {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+#password_change {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}

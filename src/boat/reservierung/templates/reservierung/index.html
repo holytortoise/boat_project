@@ -1,12 +1,57 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block titel %}Startseite{% endblock titel %}
+{% block titel %}Boot-Startseite{% endblock titel %}
 {% block head %}
+  <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
 {% endblock head %}
 {% block content %}
 
-  <h1>Willkommen bei der Reservierung für Boote</h1>
-
-
+<div class="wrapper">
+  <h1 class="top">Reservierungen</h1>
+  <form class="form" method="post">
+    {% csrf_token %}
+    <h3 class="kw">{{ start }} - {{ end }}.{{ jahr }}</h3>
+    <input id="woche" type="hidden" name="woche" value="{{woche}}">
+    <input id="jahr" type="hidden" name="jahr" value="{{jahr}}">
+    <input id='current_week' type="hidden" name="current_week" value="{{current_week}}">
+    <input id='current_year' type="hidden" name="current_year" value="{{current_year}}">
+    {% if is_week %}
+    {% else %}
+    <button class="last btn btn-primary" type="submit" name="last_week"><span class="glyphicon glyphicon-arrow-left"></span></button>
+    {% endif %}
+    <button class="next btn btn-primary" type="submit" name="next_week"><span class="glyphicon glyphicon-arrow-right"></span></button>
+  </form>
+</div>
+{% if boats_return is None %}
+<div class="wrapper">
+    <h2 class="top">Keine Reservierungen</h2>
+  </div>
+{% else %}
+  {% for boat in boats_return  %}
+    {% for reserv in boat  %}
+      {% if forloop.first %}
+      <div class="wrapper">
+        <h2 class="top">{{ reserv.reserviertesBoot }}</h2>
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <th>Anfang</th>
+            <th>Ende</th>
+            <th>Details</th>
+          </thead>
+          <tbody>
+    {% endif %}
+    <tr>
+      <td id="r_anfang">{{ reserv.anfangsDatum|date:"d.m.o" }} {{ reserv.anfangsZeit|date:"H:i" }}</td>
+      <td id="r_ende">{{ reserv.endDatum|date:"d.m.o" }} {{ reserv.endZeit|date:"H:i" }}</td>
+      <td id="r_details"><a href="{% url 'reservierung:reservierung-detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
+    </tr>
+    {% if forloop.last %}
+    </tbody>
+  </table>
+    {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endif %}
 {% endblock content %}

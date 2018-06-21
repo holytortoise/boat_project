@@ -39,7 +39,32 @@ def index(request):
     end = start + datetime.timedelta(days=6)
     start = start.strftime('%d.%m')
     end = end.strftime('%d.%m')
-    
+
+    boats = models.Boat.objects.all()
+    boats_return = []
+    for boat in boats:
+        boat_return = []
+        reservierungen = models.Reservierung.objects.filter(
+            reserviertesBoot=boat).order_by('a_Datum')
+        )
+        for reservierung in reservierungen:
+            if reservierung.a_Datum.isocalendar()[1] < woche and
+                woche < reservierung.e_Datum.isocalendar()[1]:
+                boat_reaturn.append(reservierung)
+            if ((reservierung.a_Datum.isocalendar()[1] < woche and
+                reservierung.a_Datum.isocalendar()[0] == jahr)
+                or (reservierung.e_Datum.isocalendar()[1] == woche and
+                reservierung.e_Datum.isocalendar()[0] == jahr)):
+                boat_return.append(reservierung)
+        if len(boat_return) != 0:
+            boats_return.append(boat_return)
+    if len(boats_return) == 0:
+        boats_return = None
+    context_dict = {'boats_return':boats_return,'reserv':reservierungen,'woche':woche,
+    'jahr':jahr,'current_week':current_week,'current_year':current_year,
+    'is_week':is_week,'start':start,'end':end}
+    return render(request, 'index.html', context_dict)    
+
 
     return render(request, 'index.html')
 
