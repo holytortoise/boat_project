@@ -77,7 +77,7 @@ def index(request):
         for reservierung in reservierungen:
             if reservierung.a_Datum.isocalendar()[1] < woche and woche < reservierung.e_Datum.isocalendar()[1]:
                 boat_return.append(reservierung)
-            if ((reservierung.a_Datum.isocalendar()[1] < woche and reservierung.a_Datum.isocalendar()[0] == jahr)
+            if ((reservierung.a_Datum.isocalendar()[1] == woche and reservierung.a_Datum.isocalendar()[0] == jahr)
                 or (reservierung.e_Datum.isocalendar()[1] == woche and reservierung.e_Datum.isocalendar()[0] == jahr)):
                 boat_return.append(reservierung)
         if len(boat_return) != 0:
