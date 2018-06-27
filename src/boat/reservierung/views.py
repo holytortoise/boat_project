@@ -197,6 +197,6 @@ def reservierung_user(request):
             reserviertesBoot=boat).order_by('a_Datum')
         for reservierung in reservierungen:
             if reservierung.reserviert_von == user:
-                boat_return.append(boat)
+                boat_return.append(reservierung)
         boats_return.append(boat_return)
     return render(request, 'reservierung/reservierung_user.html',{'user':user,'boats_return':boats_return})

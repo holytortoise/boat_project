@@ -23,8 +23,9 @@
         <tbody>
   {% endif %}
   <tr>
-    <td id="r_anfang">{{ reservierung.anfangsDatum|date:"d.m.o"}} {{reservierung.anfangsZeit|date:"H:i" }}</td>
-    <td id="r_ende">{{ reservierung.endDatum|date:"d.m.o"}} {{ reservierung.endZeit|date:"H:i" }}</td>
+    <td>{{ reservierung.reserviertesBoot}}</td>
+    <td id="r_anfang">{{ reservierung.a_Datum|date:"d.m.o"}} {{reservierung.a_Zeit|date:"H:i" }}</td>
+    <td id="r_ende">{{ reservierung.e_Datum|date:"d.m.o"}} {{ reservierung.e_Zeit|date:"H:i" }}</td>
     <td id="r_details"><a href="{% url 'reservierung:detail' pk=reservierung.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
   </tr>
   {% if forloop.last %}
