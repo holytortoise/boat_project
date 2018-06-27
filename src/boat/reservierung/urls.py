@@ -9,5 +9,6 @@ urlpatterns = [
     path('reservierung/form/', views.reservierung_form, name ='form'),
     path('reservierung/<int:pk>/', views.ReservierungDetail.as_view(), name='detail'),
     path('reservierung/<int:pk>/delete/', views.ReservierungDelete.as_view(), name='delete'),
+    path('reservierung/boote/', views.BootListe.as_view(), name='boote'),
     path('reservierung/user/', views.reservierung_user, name='user'),
 ]
