@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block titel %}Boote{% endblock titel %}
+{% block head %}<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">{% endblock head %}
+{% block content %}
+
+  <div class="wrapper">
+    <h1 class="top">Boote</h1>
+  </div>
+
+  <ul>
+    {% for boot in boote %}
+    {% if forloop.first %}
+        <table class="table table-bordered">
+          <thead>
+            <th>Name</th>
+          </thead>
+          <tbody>
+    {% endif %}
+    <tr>
+      <td>{{boot.name}}</td>
+    </tr>
+    {% if forloop.last %}
+  </tbody>
+</table>
+    {% endif %}
+  {% endfor %}  
+  </ul>
+
+{% endblock content %}

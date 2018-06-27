@@ -33,6 +33,13 @@ class ReservierungDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'reservierung'
     template_name = 'reservierung/reservierung_detail.html'
 
+
+class BootListe(LoginRequiredMixin, ListView):
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    queryset = models.Boot.objects.order_by('Name')
+    context_object_name = 'boote'
+
 @login_required(login_url='account:login')
 def index(request):
     current_week = datetime.date.today().isocalendar()[1]
