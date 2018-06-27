@@ -37,7 +37,7 @@ class ReservierungDetail(LoginRequiredMixin, DetailView):
 class BootListe(LoginRequiredMixin, ListView):
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
-    queryset = models.Boot.objects.order_by('Name')
+    queryset = models.Boot.objects.order_by('name')
     context_object_name = 'boote'
 
 @login_required(login_url='account:login')
