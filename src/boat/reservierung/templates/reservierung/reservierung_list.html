@@ -25,7 +25,7 @@
   <tr>
     <td id="r_anfang">{{ reservierung.anfangsDatum|date:"d.m.o"}} {{reservierung.anfangsZeit|date:"H:i" }}</td>
     <td id="r_ende">{{ reservierung.endDatum|date:"d.m.o"}} {{ reservierung.endZeit|date:"H:i" }}</td>
-    <td id="r_details"><a href="{% url 'reservierung:reservierung-detail' pk=reservierung.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
+    <td id="r_details"><a href="{% url 'reservierung:detail' pk=reservierung.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
   </tr>
   {% if forloop.last %}
   </tbody>
