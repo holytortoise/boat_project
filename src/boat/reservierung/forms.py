@@ -2,6 +2,18 @@ from django import forms
 import datetime
 from .models import Reservierung,Boot
 
+def create_choice():
+    choice = []
+    try:
+        boote = Boot.objects.all()
+        if boote.exists():
+            for boot in boote:
+                choice.append((boot.id, boot.get_name()))
+        else:
+            choice = [(),()]
+    except:
+        pass
+    return choice
 
 class ReservierungForm(forms.Form):
     form_choice = ()
@@ -12,18 +24,6 @@ class ReservierungForm(forms.Form):
     a_Zeit = forms.TimeField(label='Anfangs Zeit',help_text='HH:mm')
     e_Zeit = forms.TimeField(label='End Zeit',help_text='HH:mm')
 
-    def create_choice(self):
-        choice = []
-        try:
-            boote = Boot.objects.all()
-            if boote.exists():
-                for boot in boote:
-                    choice.append((boot.id, boot.get_name()))
-            else:
-                choice = [(),()]
-        except:
-            pass
-        return choice
 
     def clean(self):
         cleaned_data = super(ReservierungForm, self).clean()
