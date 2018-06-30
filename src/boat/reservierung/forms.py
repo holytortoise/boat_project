@@ -4,11 +4,26 @@ from .models import Reservierung,Boot
 
 
 class ReservierungForm(forms.Form):
-    reserviertesBoot = forms.CharField()
-    a_Datum = forms.DateField()
-    e_Datum = forms.DateField()
-    a_Zeit = forms.TimeField(help_text='HH:mm')
-    e_Zeit = forms.TimeField(help_text='HH:mm')
+    form_choice = ()
+    form_choice = create_choice()
+    reserviertesBoot = forms.ChoiceField(label='Boot',form_choice)
+    a_Datum = forms.DateField(label='Anfangs Datum',initial='Anfangs Datum')
+    e_Datum = forms.DateField(label='End Datum')
+    a_Zeit = forms.TimeField(label='Anfangs Zeit',help_text='HH:mm')
+    e_Zeit = forms.TimeField(label='End Zeit',help_text='HH:mm')
+
+    def create_choice(self):
+        choice = []
+        try:
+            boote = Boot.objects.all()
+            if boote.exists():
+                for boot in boote:
+                    choice.append((boot.id, boot.get_name()))
+            else:
+                choice = [(),()]
+        except:
+            pass
+        return choice
 
     def clean(self):
         cleaned_data = super(ReservierungForm, self).clean()
