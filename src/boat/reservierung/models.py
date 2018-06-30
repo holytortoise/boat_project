@@ -11,6 +11,9 @@ import datetime
 class Boot(models.Model):
     name = models.CharField(max_length=255)
 
+    def get_name(self):
+        return "{}".format(self.name)
+
     def __str__(self):
         return "{}".format(self.name)
 
@@ -27,6 +30,19 @@ class Reservierung(models.Model):
 
     def get_absolute_url(self):
         return reverse('reservierung:index')
+
+    def create_choice(self):
+        choice = []
+        try:
+            boats = Boot.objects.all()
+            if boats.exists():
+                for boat in boats:
+                    choice.append((boat.id, boat.get_name()))
+            else:
+                choice = [(),()]
+        except:
+            pass
+        return choice
 
     def __str__(self):
         return "{} {} {} {} {} {}".format(self.reserviert_von,self.reserviertesBoot,

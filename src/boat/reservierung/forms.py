@@ -2,22 +2,12 @@ from django import forms
 import datetime
 from .models import Reservierung,Boot
 
-def create_choice():
-    choice = []
-    try:
-        boote = Boot.objects.all()
-        if boote.exists():
-            for boot in boote:
-                choice.append((boot.id, boot.get_name()))
-        else:
-            choice = [(),()]
-    except:
-        pass
-    return choice
+
 
 class ReservierungForm(forms.Form):
-    form_choice = ()
-    form_choice = create_choice()
+    choice = ()
+    model = Reservierung()
+    choice = model.create_choice()
     reserviertesBoot = forms.ChoiceField(form_choice)
     a_Datum = forms.DateField(label='Anfangs Datum',initial='Anfangs Datum')
     e_Datum = forms.DateField(label='End Datum')
