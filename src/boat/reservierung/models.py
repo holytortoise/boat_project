@@ -42,6 +42,7 @@ class Reservierung(models.Model):
                 choice = [(None,None),]
         except:
             pass
+        choice.append((100,'Boot'))
         return choice
 
     def __str__(self):
