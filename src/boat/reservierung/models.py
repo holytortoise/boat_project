@@ -31,7 +31,6 @@ class Reservierung(models.Model):
     def get_absolute_url(self):
         return reverse('reservierung:index')
 
-    @staticmethod
     def create_choice(self):
         choice = []
         try:
