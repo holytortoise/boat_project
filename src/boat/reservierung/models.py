@@ -31,6 +31,7 @@ class Reservierung(models.Model):
     def get_absolute_url(self):
         return reverse('reservierung:index')
 
+    @staticmethod
     def create_choice(self):
         choice = []
         try:
@@ -42,7 +43,6 @@ class Reservierung(models.Model):
                 choice = [(None,None),]
         except:
             pass
-        choice.append((100,'Boot'))
         return choice
 
     def __str__(self):
