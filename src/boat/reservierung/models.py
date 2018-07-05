@@ -39,7 +39,7 @@ class Reservierung(models.Model):
                 for boat in boats:
                     choice.append((boat.id, boat.get_name()))
             else:
-                choice = [(),()]
+                choice = [(None,None),]
         except:
             pass
         return choice
