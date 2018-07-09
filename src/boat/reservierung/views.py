@@ -200,31 +200,31 @@ def reservierung_user(request):
     return render(request, 'reservierung/reservierung_user.html',{'user':user,'boats_return':boats_return})
 
 
-@login_required(login_url='account:login')
-def boot_erstellen(request):
-
-    ImageFormSet = modelformset_factory(Images,form=forms.ImageForm, extra=3)
-
-    if request.method == 'POST':
-        postForm = forms.BootForm(request.POST)
-        formset = ImageFormSet(request.POST, request.FILES, queryset=models.Images.objects.none())
-
-        if postForm.is_valid() and formset.is_valid():
-            post_form = postForm.save(commit=False)
-            post_form.user = request.user
-            post_form.save()
-
-            for form in formset.cleaned_data:
-                image = form['image']
-                photo = Images(post=post_form, image=image)
-                photo.save()
-            messages.succes(request,"Yeew, check it out on the home page!")
-            return HttpResponseRedirect("/")
-        else:
-            print(postForm.errors, formset.errors)
-    else:
-        postForm = BootForm()
-        formset = ImageFormSet(queryset=models.Images.objects.none())
-    return render(request, 'boot_erstellen.html',
-                {'postForm':postForm,'formset':formset},
-                context_instance=RequestsContext(request))
+# @login_required(login_url='account:login')
+# def boot_erstellen(request):
+#
+#     ImageFormSet = modelformset_factory(Images,form=forms.ImageForm, extra=3)
+#
+#     if request.method == 'POST':
+#         postForm = forms.BootForm(request.POST)
+#         formset = ImageFormSet(request.POST, request.FILES, queryset=models.Images.objects.none())
+#
+#         if postForm.is_valid() and formset.is_valid():
+#             post_form = postForm.save(commit=False)
+#             post_form.user = request.user
+#             post_form.save()
+#
+#             for form in formset.cleaned_data:
+#                 image = form['image']
+#                 photo = Images(post=post_form, image=image)
+#                 photo.save()
+#             messages.succes(request,"Yeew, check it out on the home page!")
+#             return HttpResponseRedirect("/")
+#         else:
+#             print(postForm.errors, formset.errors)
+#     else:
+#         postForm = BootForm()
+#         formset = ImageFormSet(queryset=models.Images.objects.none())
+#     return render(request, 'boot_erstellen.html',
+#                 {'postForm':postForm,'formset':formset},
+#                 context_instance=RequestsContext(request))
