@@ -40,8 +40,8 @@ class BootForm(forms.ModelForm):
         fields = ('name','instandsetzung',)
 
 
-#class ImageForm(forms.ModelForm):
-#    image = forms.ImageField(label='Image')
-#    class Meta:
-#        model = Images
-#        fields= ('images',)
+class ImageForm(forms.ModelForm):
+   image = forms.ImageField(label='Image')
+   class Meta:
+       model = Images
+       fields= ('images',)
