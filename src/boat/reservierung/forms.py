@@ -1,6 +1,6 @@
 from django import forms
 import datetime
-from .models import Reservierung,Boot
+from .models import Reservierung,Boot,Images
 
 def create_choice():
     choice = []
@@ -36,12 +36,12 @@ class BootForm(forms.ModelForm):
     instandsetzung = forms.CharField()
 
     class Meta:
-        model = models.Boot
+        model = Boot
         fields = ('name','instandsetzung',)
 
 
 class ImageForm(forms.ModelForm):
     image = forms.ImageField(label='Image')
     class Meta:
-        model = models.Images
+        model = Images
         fields= ('images',)
