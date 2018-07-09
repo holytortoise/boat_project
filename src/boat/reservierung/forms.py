@@ -36,12 +36,12 @@ class BootForm(forms.ModelForm):
     instandsetzung = forms.CharField()
 
     class Meta:
-        model = Boot
+        model = models.Boot
         fields = ('name','instandsetzung',)
 
 
 class ImageForm(forms.ModelForm):
     image = forms.ImageField(label='Image')
     class Meta:
-        model = Images
+        model = models.Images
         fields= ('images',)
