@@ -25,8 +25,7 @@ class Reservierung(models.Model):
     reserviertesBoot = models.ForeignKey(Boot,on_delete=models.CASCADE)
     a_Datum = models.DateField("Start Datum", default=datetime.date.today)
     e_Datum = models.DateField("End Datum", default=datetime.date.today)
-    a_Zeit = models.TimeField("Reserviert von")
-    e_Zeit = models.TimeField("Reserviert bis")
+
 
     def get_absolute_url(self):
         return reverse('reservierung:index')
@@ -45,10 +44,10 @@ class Reservierung(models.Model):
         return choice
 
     def __str__(self):
-        return "{} {} {} {} {} {}".format(self.reserviert_von,self.reserviertesBoot,
-        self.a_Datum,self.e_Datum,self.a_Zeit,self.e_Zeit)
+        return "{} {} {} {}".format(self.reserviert_von,self.reserviertesBoot,
+        self.a_Datum,self.e_Datum)
 
 
     class Meta:
         verbose_name_plural = 'Reservierungen'
-        ordering = ['reserviertesBoot','a_Datum','a_Zeit']
+        ordering = ['reserviertesBoot','a_Datum']
