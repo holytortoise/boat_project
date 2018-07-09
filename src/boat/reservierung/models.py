@@ -34,11 +34,8 @@ class Reservierung(models.Model):
         choice = []
         try:
             boats = Boot.objects.all()
-            if boats.exists():
-                for boat in boats:
-                    choice.append((boat.id, boat.get_name()))
-            else:
-                choice = [(None,None),]
+            for boat in boats:
+                choice.append((boat.id, boat.get_name()))
         except:
             pass
         return choice
