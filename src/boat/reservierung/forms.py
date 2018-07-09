@@ -5,8 +5,8 @@ from .models import Reservierung,Boot
 
 
 class ReservierungForm(forms.Form):
-    #reserviertesBoot = forms.ChoiceField(Reservierung().create_choice())
-    a_Datum = forms.DateField(label='Anfangs Datum',initial='Anfangs Datum')
+    reserviertesBoot = forms.ChoiceField(Reservierung().create_choice())
+    a_Datum = forms.DateField(label='Anfangs Datum')
     e_Datum = forms.DateField(label='End Datum')
 
 
