@@ -29,3 +29,19 @@ class ReservierungForm(forms.Form):
                 raise forms.ValidationError("Anfangsdatum kann nicht in der Vergangenheit liegen.")
             if a_Datum > e_Datum:
                 raise forms.ValidationError("Enddatum kann nicht vor Anfangsdatum sein.")
+
+
+class BootForm(forms.ModelForm):
+    name = forms.CharField()
+    instandsetzung = forms.CharField()
+
+    class Meta:
+        model = Boot
+        fields = ('name','instandsetzung',)
+
+
+class ImageForm(forms.ModelForm):
+    image = forms.ImageField(label='Image')
+    class Meta:
+        model = Images
+        fields= ('images',)

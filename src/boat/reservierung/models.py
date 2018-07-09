@@ -10,6 +10,7 @@ import datetime
 
 class Boot(models.Model):
     name = models.CharField(max_length=255)
+    instandsetzung = models.TextField()
 
     def get_name(self):
         return "{}".format(self.name)
@@ -48,3 +49,14 @@ class Reservierung(models.Model):
     class Meta:
         verbose_name_plural = 'Reservierungen'
         ordering = ['reserviertesBoot','a_Datum']
+
+
+class Einweisung(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    boot = models.ForeignKey(Boot,on_delete=models.CASCADE)
+    einweisung = models.BooleanField(default=False)
+
+
+class Images(models.Model):
+    boot = models.ForeignKey(Boot,default=None)
+    image = models.ImageField(upload_to=get_image_filename, verbose_name='Image')
