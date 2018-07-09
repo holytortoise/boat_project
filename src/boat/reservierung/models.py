@@ -59,4 +59,4 @@ class Einweisung(models.Model):
 
 class Images(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/uploads/', verbose_name='Image')
+    image = models.ImageField(upload_to='static/uploads/')
