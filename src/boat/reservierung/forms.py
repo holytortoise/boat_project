@@ -13,7 +13,7 @@ def create_choice():
     return choice
 
 class ReservierungForm(forms.Form):
-    reserviertesBoot = forms.ChoiceField(create_choice())
+    reserviertesBoot = forms.ChoiceField(choices=create_choice())
     a_Datum = forms.DateField(label='Anfangs Datum')
     e_Datum = forms.DateField(label='End Datum')
 
