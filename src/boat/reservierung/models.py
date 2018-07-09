@@ -10,7 +10,7 @@ import datetime
 
 class Boot(models.Model):
     name = models.CharField(max_length=255)
-    instandsetzung = models.TextField()
+    instandsetzung = models.TextField(default="Keine Instandsetzungen notwendig")
 
     def get_name(self):
         return "{}".format(self.name)
