@@ -221,7 +221,7 @@ def boot_erstellen(request):
             messages.succes(request,"Yeew, check it out on the home page!")
             return HttpResponseRedirect("/")
         else:
-            print postForm.errors, formset.errors
+            print(postForm.errors, formset.errors)
     else:
         postForm = BootForm()
         formset = ImageFormSet(queryset=models.Images.objects.none())
