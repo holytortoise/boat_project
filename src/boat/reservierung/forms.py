@@ -8,7 +8,7 @@ class ReservierungForm(forms.Form):
     choice = ()
     model = Reservierung()
     choice = model.create_choice()
-#    reserviertesBoot = forms.ChoiceField(choice)
+    reserviertesBoot = forms.ChoiceField(choice)
     a_Datum = forms.DateField(label='Anfangs Datum',initial='Anfangs Datum')
     e_Datum = forms.DateField(label='End Datum')
     a_Zeit = forms.TimeField(label='Anfangs Zeit',help_text='HH:mm')
