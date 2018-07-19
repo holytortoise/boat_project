@@ -56,6 +56,9 @@ class Einweisung(models.Model):
     boot = models.ForeignKey(Boot,on_delete=models.CASCADE)
     einweisung = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name_plural = "Einweisungen"
+
 
 class Images(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)

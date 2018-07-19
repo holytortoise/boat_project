@@ -11,4 +11,5 @@ urlpatterns = [
     path('reservierung/<int:pk>/delete/', views.ReservierungDelete.as_view(), name='delete'),
     path('reservierung/boote/', views.BootListe.as_view(), name='boote'),
     path('reservierung/user/', views.reservierung_user, name='user'),
+    path('reservierung/boot_erstellen', views.boot_erstellen, name='boot-erstellen'),
 ]
