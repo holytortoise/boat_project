@@ -228,4 +228,4 @@ def boot_erstellen(request):
         formset = ImageFormSet(queryset=models.Images.objects.none())
     return render(request, 'boot_erstellen.html',
                 {'postForm':postForm,'formset':formset},
-                context_instance=RequestsContext(request))
+                context_instance=RequestContext(request))
