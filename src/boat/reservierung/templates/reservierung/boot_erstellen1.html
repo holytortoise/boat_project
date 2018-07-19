@@ -8,7 +8,18 @@
 
   <form id="post_form" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {% bootstrap_formset formset %}
+    {% for hidden in postForm.hidden_fields  %}
+        {{ hidden }}
+    {% endfor %}
+
+    {% for field in postForm  %}
+        {{ field }} <br />
+    {% endfor %}
+
+    {{formset.management_form}}
+    {% for form in formset %}
+      {{ form }}
+    {% endfor %}
     <input type="submit" name="submit" value="Submit" />
   </form>
 
