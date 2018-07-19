@@ -203,7 +203,7 @@ def reservierung_user(request):
 @login_required(login_url='account:login')
 def boot_erstellen(request):
 
-    ImageFormSet = modelformset_factory(models.Images,form=forms.ImageForm, extra=3)
+    ImageFormSet = formset_factory(models.Images,form=forms.ImageForm, extra=3)
 
     if request.method == 'POST':
         postForm = forms.BootForm(request.POST)
