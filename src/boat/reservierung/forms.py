@@ -32,12 +32,11 @@ class ReservierungForm(forms.Form):
 
 
 class BootForm(forms.ModelForm):
-    name = forms.CharField()
-    instandsetzung = forms.CharField()
+    name = forms.CharField(label='Name')
 
     class Meta:
         model = Boot
-        fields = ('name','instandsetzung',)
+        fields = ('name',)
 
 
 class ImageForm(forms.ModelForm):

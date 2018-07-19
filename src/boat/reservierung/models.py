@@ -10,7 +10,6 @@ import datetime
 
 class Boot(models.Model):
     name = models.CharField(max_length=255)
-    instandsetzung = models.TextField(default="Keine Instandsetzungen notwendig")
 
     def get_name(self):
         return "{}".format(self.name)
@@ -63,3 +62,7 @@ class Einweisung(models.Model):
 class Images(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
     image = models.ImageField(upload_to='static/uploads/')
+
+class Instandsetzung(models.Model):
+    boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
+    eintrag = models.TextField()
