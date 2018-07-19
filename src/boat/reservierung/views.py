@@ -224,7 +224,7 @@ def boot_erstellen(request):
         else:
             print(postForm.errors, formset.errors)
     else:
-        postForm = BootForm()
+        postForm = forms.BootForm()
         formset = ImageFormSet(queryset=models.Images.objects.none())
     return render(request, 'boot_erstellen.html',
                 {'postForm':postForm,'formset':formset},
