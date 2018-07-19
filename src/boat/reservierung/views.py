@@ -217,7 +217,7 @@ def boot_erstellen(request):
 
             for form in formset.cleaned_data:
                 image = form['image']
-                photo = Images(post=post_form, image=image)
+                photo = models.Images(post=post_form, image=image)
                 photo.save()
             messages.succes(request,"Yeew, check it out on the home page!")
             return HttpResponseRedirect("/")
