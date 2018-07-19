@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView,FormVie
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.forms import modelformset_factory
 
 import datetime
 from . import models
@@ -203,7 +204,7 @@ def reservierung_user(request):
 @login_required(login_url='account:login')
 def boot_erstellen(request):
 
-    ImageFormSet = formset_factory(models.Images,form=forms.ImageForm, extra=3)
+    ImageFormSet = modelformset_factory(models.Images,form=forms.ImageForm, extra=3)
 
     if request.method == 'POST':
         postForm = forms.BootForm(request.POST)
