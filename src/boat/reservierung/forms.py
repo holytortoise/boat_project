@@ -34,6 +34,14 @@ class ReservierungForm(forms.Form):
 class BootForm(forms.ModelForm):
     name = forms.CharField(label='Name')
 
+    def clean(self):
+        cleaned_Data = super(BootForm, self).clean()
+        name = cleaned_Data.get('name')
+        boats = models.Boot.objects.all()
+        for boat in boats:
+            if boat.name == name:
+                raise forms.ValidationError('Boot existiert bereits')
+        
     class Meta:
         model = Boot
         fields = ('name',)
