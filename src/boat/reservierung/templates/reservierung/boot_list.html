@@ -14,7 +14,7 @@
     {% for boot in liste %}
     <h3>{{boot.boot.name}}</h3>
     {% for image in boot  %}
-        <img src="{% static image.image %}" alt="">
+        <img src="{{ image.image.url }}" alt="">
     {% endfor %}
 
   {% endfor %}
