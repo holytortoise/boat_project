@@ -42,6 +42,15 @@ class BootListe(LoginRequiredMixin, ListView):
     context_object_name = 'boote'
 
 @login_required(login_url='account:login')
+def boot_liste(request):
+    liste = []
+    boats = models.Boot.objects.all()
+    for boat in boats:
+        images = models.Images.objects.get(boot=boat)
+        liste.append(images)
+    return render(request, 'boot_list.html',{'liste':liste})
+
+@login_required(login_url='account:login')
 def index(request):
     current_week = datetime.date.today().isocalendar()[1]
     current_year = datetime.date.today().isocalendar()[0]

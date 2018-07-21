@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load static %}
 {% block titel %}Boote{% endblock titel %}
 {% block head %}<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">{% endblock head %}
 {% block content %}
@@ -10,21 +11,12 @@
   </div>
 
   <ul>
-    {% for boot in boote %}
-    {% if forloop.first %}
-        <table class="table table-bordered">
-          <thead>
-            <th>Name</th>
-          </thead>
-          <tbody>
-    {% endif %}
-    <tr>
-      <td>{{boot.name}}</td>
-    </tr>
-    {% if forloop.last %}
-  </tbody>
-</table>
-    {% endif %}
+    {% for boot in liste %}
+    <h3>{{boot.boot.name}}</h3>
+    {% for image in boot  %}
+        <img src="{% static image.image %}" alt="">
+    {% endfor %}
+
   {% endfor %}
   </ul>
 <a href="{% url 'reservierung:boot-erstellen' %}">Boot hinzufügen</a>
