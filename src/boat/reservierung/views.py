@@ -219,7 +219,6 @@ def boot_erstellen(request):
                 image = form['image']
                 photo = models.Images(boot=models.Boot.objects.get(name=postForm.cleaned_data.get('name')),image=image)
                 photo.save()
-            messages.succes(request,"Yeew, check it out on the home page!")
             return HttpResponseRedirect("/")
         else:
             print(postForm.errors, formset.errors)
