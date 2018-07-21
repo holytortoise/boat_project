@@ -63,6 +63,9 @@ class Images(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
     image = models.ImageField(upload_to='static/uploads/')
 
+    def __str__(self):
+        return "{}".format(self.boot.name)
+
 class Instandsetzung(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
     eintrag = models.TextField()
