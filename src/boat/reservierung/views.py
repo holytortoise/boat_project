@@ -87,13 +87,13 @@ def index(request):
     end = end.strftime('%d.%m')
 
     boats = models.Boot.objects.all()
-    if boats.exists:
+    if boats.exists():
         boats_return = []
         for boat in boats:
             boat_return = []
             reservierungen = models.Reservierung.objects.filter(
                 reserviertesBoot=boat).order_by('a_Datum')
-            if reservierungen.exists:
+            if reservierungen.exists():
                 for reservierung in reservierungen:
                     if reservierung.a_Datum.isocalendar()[1] < woche and woche < reservierung.e_Datum.isocalendar()[1]:
                         boat_return.append(reservierung)
