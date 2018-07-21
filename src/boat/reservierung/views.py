@@ -93,14 +93,17 @@ def index(request):
             boat_return = []
             reservierungen = models.Reservierung.objects.filter(
                 reserviertesBoot=boat).order_by('a_Datum')
-            for reservierung in reservierungen:
-                if reservierung.a_Datum.isocalendar()[1] < woche and woche < reservierung.e_Datum.isocalendar()[1]:
-                    boat_return.append(reservierung)
-                if ((reservierung.a_Datum.isocalendar()[1] == woche and reservierung.a_Datum.isocalendar()[0] == jahr)
-                    or (reservierung.e_Datum.isocalendar()[1] == woche and reservierung.e_Datum.isocalendar()[0] == jahr)):
-                    boat_return.append(reservierung)
-            if len(boat_return) != 0:
-                boats_return.append(boat_return)
+            if reservierungen.exists:
+                for reservierung in reservierungen:
+                    if reservierung.a_Datum.isocalendar()[1] < woche and woche < reservierung.e_Datum.isocalendar()[1]:
+                        boat_return.append(reservierung)
+                    if ((reservierung.a_Datum.isocalendar()[1] == woche and reservierung.a_Datum.isocalendar()[0] == jahr)
+                        or (reservierung.e_Datum.isocalendar()[1] == woche and reservierung.e_Datum.isocalendar()[0] == jahr)):
+                        boat_return.append(reservierung)
+                if len(boat_return) != 0:
+                    boats_return.append(boat_return)
+            else:
+                reservierungen = None
         if len(boats_return) == 0:
             boats_return = None
         context_dict = {'boats_return':boats_return,'reserv':reservierungen,'woche':woche,
