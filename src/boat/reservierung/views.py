@@ -46,7 +46,7 @@ def boot_liste(request):
     liste = []
     boats = models.Boot.objects.all()
     for boat in boats:
-        images = models.Images.objects.get(boot=boat)
+        images = models.Images.objects.filter(boot=boat)
         liste.append(images)
     return render(request, 'boot_list.html',{'liste':liste})
 
