@@ -12,7 +12,7 @@
 
   <ul>
     {% for boot in liste %}
-    <h3>{{boot.boot.name}}</h3>
+    <h3>{{boot[0].boot.name}}</h3>
     {% for image in boot  %}
         <img src="{{ image.image.url }}" alt="">
     {% endfor %}
