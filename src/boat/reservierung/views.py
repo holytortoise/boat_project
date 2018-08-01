@@ -15,7 +15,7 @@ from . import forms
 class ReservierungsList(LoginRequiredMixin, ListView):
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
-    queryset = models.Reservierung.objects.order_by('a_Datum','a_Zeit')
+    queryset = models.Reservierung.objects.order_by('a_Datum')
     context_object_name = 'reservierungen'
 
 

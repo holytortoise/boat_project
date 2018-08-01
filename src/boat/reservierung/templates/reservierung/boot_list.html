@@ -6,12 +6,6 @@
 {% block titel %}Boote{% endblock titel %}
 {% block head %}<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">{% endblock head %}
 {% block content %}
-
-  <div class="wrapper">
-    <h1 class="top">Boote</h1>
-  </div>
-
-  <ul>
     {% for boot in liste %}
       {% for image in boot  %}
         {% if forloop.first  %}
@@ -29,6 +23,5 @@
     {% endfor %}
 
   {% endfor %}
-  </ul>
 <a href="{% url 'reservierung:boot-erstellen' %}">Boot hinzufügen</a>
 {% endblock content %}
