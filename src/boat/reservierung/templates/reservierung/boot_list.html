@@ -17,7 +17,7 @@
         {% if forloop.first  %}
         <h3>{{image.boot.name}}</h3>
         {% endif %}
-        <img class="img-responsive" src="{{ image.image.url }}" alt="">
+        <img class="img-responsive img-thumbnail" src="{{ image.image.url }}" alt="">
     {% endfor %}
 
   {% endfor %}
