@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load bootstrap3 %}
 {% load static %}
 {% block titel %}Boote{% endblock titel %}
 {% block head %}<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">{% endblock head %}
@@ -16,7 +17,7 @@
         {% if forloop.first  %}
         <h3>{{image.boot.name}}</h3>
         {% endif %}
-        <img src="{{ image.image.url }}" alt="">
+        <img class="img-responsive" src="{{ image.image.url }}" alt="">
     {% endfor %}
 
   {% endfor %}
