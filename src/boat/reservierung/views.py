@@ -242,3 +242,11 @@ def boot_erstellen(request):
         formset = ImageFormSet(queryset=models.Images.objects.none())
     return render(request, 'boot_erstellen.html',
                 {'postForm':postForm,'formset':formset})
+
+
+@login_required(login_url='account:login')
+def boot_details(request):
+    return render(request, 'boot_details.html')
+@login_required(login_url='account:login')
+def instandsetzung(request):
+    return render(request, 'instandsetzung.html')

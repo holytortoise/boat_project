@@ -18,6 +18,8 @@
         <td><img class="img-responsive img-thumbnail" src="{{ image.image.url }}" alt=""></td>
         {% if forloop.last %}
       </table>
+      <a class="btn btn-primary" href="{% url 'reservierung:instandsetzung' pk=image.boot.id %}">Instandsetzung</a>
+      <a class="btn btn-primary" href="{% url 'reservierung:boot-details' pk=image.boot.id %}">Details</a>
         {% endif %}
 
     {% endfor %}

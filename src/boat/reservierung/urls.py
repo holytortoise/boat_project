@@ -13,4 +13,6 @@ urlpatterns = [
     path('reservierung/boote/', views.boot_liste, name='boote'),
     path('reservierung/user/', views.reservierung_user, name='user'),
     path('reservierung/boot_erstellen', views.boot_erstellen, name='boot-erstellen'),
+    path('reservierung/boote/details/<int:pk>/', views.boot_details, name='boot-details'),
+    path('reservierung/boote/instandsetzung/<int:pk>/',views.instandsetzung, name='instandsetzung')
 ]
