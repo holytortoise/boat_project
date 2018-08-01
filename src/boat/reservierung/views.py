@@ -247,6 +247,11 @@ def boot_erstellen(request):
 @login_required(login_url='account:login')
 def boot_details(request):
     return render(request, 'boot_details.html')
+
 @login_required(login_url='account:login')
 def instandsetzung(request):
     return render(request, 'instandsetzung.html')
+
+@login_required(login_url='account:login')
+def einweisung(request):
+    return render(request, 'einweisung.html')
