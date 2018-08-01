@@ -16,8 +16,13 @@
       {% for image in boot  %}
         {% if forloop.first  %}
         <h3>{{image.boot.name}}</h3>
+        <table>
         {% endif %}
-        <img class="img-responsive img-thumbnail" src="{{ image.image.url }}" alt="">
+        <td><img class="img-responsive img-thumbnail" src="{{ image.image.url }}" alt=""></td>
+        {% if forloop.last %}
+      </table>
+        {% endif %}
+
     {% endfor %}
 
   {% endfor %}
