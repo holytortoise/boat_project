@@ -7,21 +7,22 @@
 <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
 {% endblock head %}
 {% block content %}
-<h1>{{boot.name}}</h1>
-<p>{{boot.info}}</p>
-{% for image in images  %}
-{% if forloop.first  %}
-<table>
-{% endif %}
-<td><img class="img-responsive img-thumbnail" src="{{ image.image.url }}" alt=""></td>
-{% if forloop.last %}
-</table>
-{% endfor %}
-<ul>
+  <h1>{{boot.name}}</h1>
+  <p>{{boot.info}}</p>
+  {% for image in images  %}
+    {% if forloop.first  %}
+      <table>
+    {% endif %}
+    <td><img class="img-responsive img-thumbnail" src="{{ image.image.url }}" alt=""></td>
+    {% if forloop.last %}
+      </table>
+    {% endif %}
+  {% endfor %}
+  <ul>
   {% for eintrag in instandsetzung %}
       <li>{{eintrag.eintrag}}</li>
   {% endfor %}
-</ul>
+  </ul>
   {% for nutzer in einweisung %}
       {% if forloop.first %}
           <table>
