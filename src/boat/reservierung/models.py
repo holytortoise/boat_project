@@ -9,7 +9,7 @@ import datetime
 
 class Boot(models.Model):
     name = models.CharField(max_length=255)
-    info = models.TextField()
+    info = models.TextField(default="Keine Information Verfügbar")
 
     def get_name(self):
         return "{}".format(self.name)
