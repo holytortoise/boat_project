@@ -245,11 +245,16 @@ def boot_erstellen(request):
 
 
 @login_required(login_url='account:login')
-def boot_details(request):
-    return render(request, 'boot_details.html')
+def boot_details(request,pk):
+    boat = models.Boot.objects.get(id=pk)
+    images = models.Images.objects.filter(boot=boat)
+    einweisung = models.Einweisung.objects.filter(boot=boat)
+    instandsetzung = models.Instandsetzung.objects.filter(boot=boat)
+    context_dict = {'boat':boat,'images':images,'einweisung':einweisung,'instandsetzung':instandsetzung}
+    return render(request, 'boot_details.html',context_dict)
 
 @login_required(login_url='account:login')
-def instandsetzung(request):
+def instandsetzung(request,pk):
     return render(request, 'instandsetzung.html')
 
 @login_required(login_url='account:login')
