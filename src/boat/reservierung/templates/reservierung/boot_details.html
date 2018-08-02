@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
 {% endblock head %}
 {% block content %}
-  <h1>{{boot.name}}</h1>
-  <p>{{boot.info}}</p>
+  <h1>{{boat.name}}</h1>
+  <p>{{boat.info}}</p>
   {% for image in images  %}
     {% if forloop.first  %}
       <table>
