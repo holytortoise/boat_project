@@ -33,6 +33,7 @@ class ReservierungForm(forms.Form):
 
 class BootForm(forms.ModelForm):
     name = forms.CharField(label='Name')
+    info = forms.CharField(label='Information')
 
     def clean(self):
         cleaned_Data = super(BootForm, self).clean()
@@ -44,7 +45,7 @@ class BootForm(forms.ModelForm):
 
     class Meta:
         model = Boot
-        fields = ('name',)
+        fields = ('name','info',)
 
 
 class ImageForm(forms.ModelForm):
@@ -52,3 +53,11 @@ class ImageForm(forms.ModelForm):
    class Meta:
        model = Images
        fields= ('image',)
+
+
+class InstandsetzungForm(forms.Form):
+    eintrag = forms.CharField(label='Eintrag')
+
+
+class EinweisungForm(forms.Form):
+    einweisung = forms.BooleanField()

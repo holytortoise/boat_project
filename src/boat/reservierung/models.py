@@ -55,9 +55,12 @@ class Einweisung(models.Model):
     boot = models.ForeignKey(Boot,on_delete=models.CASCADE)
     einweisung = models.BooleanField(default=False)
 
+    def __str__(self):
+        return "{} {}".format(self.boot,self.user)
+
     class Meta:
         verbose_name_plural = "Einweisungen"
-
+        ordering = ['boot']
 
 class Images(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
@@ -66,6 +69,16 @@ class Images(models.Model):
     def __str__(self):
         return "{}".format(self.boot.name)
 
+    class Meta:
+        ordering = ['boot']
+
 class Instandsetzung(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
     eintrag = models.TextField()
+
+    def __str__(self):
+        return "{} {}".format(self.boot,self.eintrag)
+
+    class Meta:
+        ordering = ['boot']

@@ -255,7 +255,22 @@ def boot_details(request,pk):
 
 @login_required(login_url='account:login')
 def instandsetzung(request,pk):
-    return render(request, 'instandsetzung.html')
+    boat = models.Boot.objects.get(id=pk)
+    nutzer = request.user
+    einträge = models.Instandsetzung.objects.filter(boot=boat)
+    context_dict = {'boat':boat,'einträge':einträge}
+    if request.method == 'POST':
+        form = forms.InstandsetzungForm(data=request.POST)
+        if form.is_valid():
+            instandsetzung = models.Instandsetzung()
+            instandsetzung.user = nutzer
+            instandsetzung.boot = boat
+            instandsetzung.eintrag = form.cleaned_Data.get("eintrag")
+            instandsetzung.save()
+            return render(request, 'instandsetzung.html',context_dict)
+    else:
+        form = forms.InstandsetzungForm()
+    return render(request, 'instandsetzung.html', context_dict)
 
 @login_required(login_url='account:login')
 def einweisung(request):
