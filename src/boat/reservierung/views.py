@@ -267,7 +267,7 @@ def instandsetzung(request,pk):
             instandsetzung.boot = boat
             instandsetzung.eintrag = form.cleaned_data.get("eintrag")
             instandsetzung.save()
-            return HttpResponseRedirect(reverse('reservierung:index'))
+            return HttpResponseRedirect(reverse('reservierung:boote'))
     else:
         form = forms.InstandsetzungForm()
         context_dict['form'] = form
