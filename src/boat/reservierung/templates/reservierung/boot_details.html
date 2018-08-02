@@ -26,9 +26,11 @@
   {% for nutzer in einweisung %}
       {% if forloop.first %}
           <table>
-            <th>Nutzer</th>
-            <th>Ja</th>
-            <th>Nein</th>
+            <thead>
+              <th>Nutzer</th>
+              <th>Ja</th>
+              <th>Nein</th>
+            </thead>
       {% endif %}
       <td>{{nutzer.user}}</td>
       <td>X</td>
