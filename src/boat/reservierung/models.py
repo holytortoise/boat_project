@@ -74,7 +74,7 @@ class Images(models.Model):
 
 class Instandsetzung(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
-    user = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
+    #user = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
     eintrag = models.TextField()
 
     def __str__(self):
