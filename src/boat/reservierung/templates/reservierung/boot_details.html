@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
 {% load staticfiles %}
-{% block titel %}Details{% endblock titel %}
+{% load bootstrap3 %}
+{% block titel %}{{boot.name}}{% endblock titel %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
 {% endblock head %}
 {% block content %}
-<h1>Details</h1>
+<h1>{{boot.name}}</h1>
+<p>{{boot.info}}</p>
+{% for image in images  %}
+{% if forloop.first  %}
+<table>
+{% endif %}
+<td><img class="img-responsive img-thumbnail" src="{{ image.image.url }}" alt=""></td>
+{% if forloop.last %}
+</table>
+{% endfor %}
+<ul>
+  {% for eintrag in instandsetzung %}
+      <li>{{eintrag.eintrag}}</li>
+  {% endfor %}
+</ul>
+  {% for nutzer in einweisung %}
+      {% if forloop.first %}
+          <table>
+            <th>Nutzer</th>
+            <th>Ja</th>
+            <th>Nein</th>
+      {% endif %}
+      <td>{{nutzer.user}}</td>
+      <td>X</td>
+      <td>X</td>
+  {% endfor %}
+
 {% endblock content %}
