@@ -270,6 +270,7 @@ def instandsetzung(request,pk):
             return render(request, 'instandsetzung.html',context_dict)
     else:
         form = forms.InstandsetzungForm()
+        context_dict['form'] = form
     return render(request, 'instandsetzung.html', context_dict)
 
 @login_required(login_url='account:login')
