@@ -265,7 +265,7 @@ def instandsetzung(request,pk):
             instandsetzung = models.Instandsetzung()
             instandsetzung.user = nutzer
             instandsetzung.boot = boat
-            instandsetzung.eintrag = form.cleaned_Data["eintrag"]
+            instandsetzung.eintrag = form.cleaned_data.get("eintrag")
             instandsetzung.save()
             return render(request, 'instandsetzung.html',context_dict)
     else:
