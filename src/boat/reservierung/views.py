@@ -290,6 +290,6 @@ def einweisung(request,pk):
             einweisung.save()
             return HttpResponseRedirect(reverse('reesrvierung:boote'))
     else:
-        form = form.EinweisungForm()
+        form = forms.EinweisungForm()
         context_dict['form'] = form
     return render(request, 'einweisung.html', context_dict)
