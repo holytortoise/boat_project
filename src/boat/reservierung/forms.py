@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 import datetime
 from .models import Reservierung,Boot,Images
 
@@ -60,4 +61,6 @@ class InstandsetzungForm(forms.Form):
 
 
 class EinweisungForm(forms.Form):
+    boat = forms.ModelChoiceField(queryset=Boot.objects.all())
+    user = forms.ModelChoiceField(queryset=User.objects.all())
     einweisung = forms.BooleanField()

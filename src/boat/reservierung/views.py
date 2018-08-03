@@ -41,6 +41,14 @@ class BootListe(LoginRequiredMixin, ListView):
     queryset = models.Boot.objects.order_by('name')
     context_object_name = 'boote'
 
+
+class EinweisungList(LoginRequiredMixin, ListView):
+    login_url='account:login'
+    redirect_field_name ='redirect_to'
+    queryset = models.Einweisung.objects.order_by('boot')
+    context_object_name = 'einweisungen'
+
+
 @login_required(login_url='account:login')
 def boot_liste(request):
     liste = []
@@ -143,12 +151,13 @@ def reservierung_form(request):
                         elif reservierung.a_Datum > form.cleaned_data.get("e_Datum"):
                             moeglich = True
                         elif reservierung.a_Datum == form.cleaned_data.get("e_Datum"):
-                            if reservierung.a_Zeit > form.cleaned_data.get("e_Zeit"):
-                                moeglich = True
-                            else:
-                                moeglich = False
-                                reserv = reservierung
-                                break
+                            moeglich = False
+                            reserv = reservierung
+                            break
+                        elif reservierung.e_Datum == form.cleaned_Data.get("a_Datum"):
+                            moeglich = False
+                            reserv = reservierung
+                            break
             else:
                 moeglich = True
             if moeglich:
@@ -157,8 +166,6 @@ def reservierung_form(request):
                 reserv.reserviertesBoot = models.Boot.objects.get(id=form.cleaned_data.get("reserviertesBoot"))
                 reserv.a_Datum = form.cleaned_data.get("a_Datum")
                 reserv.e_Datum = form.cleaned_data.get("e_Datum")
-                reserv.a_Zeit = form.cleaned_data.get("a_Zeit")
-                reserv.e_Zeit = form.cleaned_data.get("e_Zeit")
                 reserv.save()
                 return HttpResponseRedirect(reverse('reservierung:index'))
             else:
@@ -176,19 +183,13 @@ def reservierung_form(request):
                                     if boat_reserv.e_Datum < form.cleaned_data.get("a_Datum"):
                                         free_boat = True
                                     elif boat_reserv.e_Datum == form.cleaned_Data.get("a_Datum"):
-                                        if boat_reserv.e_Zeit <= form.cleaned_data.get("a_Zeit"):
-                                            free_boat = True
-                                        else:
-                                            free_boat = False
-                                            break
+                                        free_boat = False
+                                        break
                                     elif boat_reserv.a_Datum > form.cleaned_data.get("e_Zeit"):
                                         free_boat = True
                                     elif boat_reserv.a_Datum == form.cleaned_data.get("e_Datum"):
-                                        if boat_reserv.a_Zeit > form.cleaned_data.get("e_Zeit"):
-                                            free_boat = True
-                                        else:
-                                            free_boat = False
-                                            break
+                                        free_boat = False
+                                        break
                                 if free_boat:
                                     free_boats.append(boat)
                             else:
@@ -274,5 +275,21 @@ def instandsetzung(request,pk):
     return render(request, 'instandsetzung.html', context_dict)
 
 @login_required(login_url='account:login')
-def einweisung(request):
-    return render(request, 'einweisung.html')
+def einweisung(request,pk):
+    boat = models.Boot.objects.get(id=pk)
+    nutzer = request.user
+    einweisungen = models.Einweisung.filter(boot=boat)
+    context_dict = {'boat':boat,'einweisungen':einweisungen}
+    if request.method == 'POST':
+        form = forms.EinweisungForm(data=request.POST)
+        if form.is_valid():
+            einweisung = models.Einweisung()
+            einweisung.user = form.cleaned_data.get('user')
+            einweisung.boot = form.cleaned_data.get('boat')
+            einweisung.einweisung = form.cleaned_data.get('einweisung')
+            einweisung.save()
+            return HttpResponseRedirect(reverse('reesrvierung:boote'))
+        else:
+            form = form.EinweisungForm()
+            context_dict['form'] = form
+    return render(request, 'einweisung.html', context_dict)

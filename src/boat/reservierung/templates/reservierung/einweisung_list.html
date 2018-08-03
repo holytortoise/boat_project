@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% load static %}
+{% block titel %}Einweisungen{% endblock titel %}
+{% block head %}<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">{% endblock head %}
+{% block content %}
+
+  <h1>Einweisungen</h1>
+  <table>
+    <thead>
+      <th>Boot</th>
+      <th>User</th>
+      <th>Einweisung</th>
+    </thead>
+    {% for einweisung in einweisungen  %}
+        <tr>
+          <td>{{einweisung.boot}}</td>
+          <td>{{einweisung.user}}</td>
+          <td>{{einweisung.einweisung}}</td>
+        </tr>
+    {% endfor %}
+
+  </table>
+{% endblock content %}

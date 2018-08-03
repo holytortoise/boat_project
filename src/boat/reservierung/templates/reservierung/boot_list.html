@@ -19,6 +19,7 @@
       </table>
       <a class="btn btn-primary" href="{% url 'reservierung:instandsetzung' pk=image.boot.id %}">Instandsetzung</a>
       <a class="btn btn-primary" href="{% url 'reservierung:boot-details' pk=image.boot.id %}">Details</a>
+      <a class="btn btn-primary" href="{% url 'reservierung:einweisung' pk=image.boot.id %}">Einweisung</a>
         {% endif %}
 
     {% endfor %}
