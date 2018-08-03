@@ -288,7 +288,7 @@ def einweisung(request,pk):
             einweisung.boot = form.cleaned_data.get('boat')
             einweisung.einweisung = form.cleaned_data.get('einweisung')
             einweisung.save()
-            return HttpResponseRedirect(reverse('reesrvierung:boote'))
+            return HttpResponseRedirect(reverse('resrvierung:boote'))
     else:
         form = forms.EinweisungForm()
         context_dict['form'] = form
