@@ -283,12 +283,15 @@ def einweisung(request,pk):
     if request.method == 'POST':
         form = forms.EinweisungForm(data=request.POST)
         if form.is_valid():
-            einweisung = models.Einweisung()
-            einweisung.user = form.cleaned_data.get('user')
-            einweisung.boot = form.cleaned_data.get('boat')
-            einweisung.einweisung = form.cleaned_data.get('einweisung')
-            einweisung.save()
-            return HttpResponseRedirect(reverse('reservierung:boote'))
+            if models.Einweisung.objects.get(user=nutzer,boot=boat).exists():
+                return HttpResponseRedirect(reverse('reservierung:boote'))
+            else:
+                einweisung = models.Einweisung()
+                einweisung.user = form.cleaned_data.get('user')
+                einweisung.boot = form.cleaned_data.get('boat')
+                einweisung.einweisung = form.cleaned_data.get('einweisung')
+                einweisung.save()
+                return HttpResponseRedirect(reverse('reservierung:boote'))
     else:
         form = forms.EinweisungForm()
         context_dict['form'] = form
