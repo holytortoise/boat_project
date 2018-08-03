@@ -3,7 +3,28 @@
 {% load staticfiles %}
 {% block titel %}Einweisung{% endblock titel %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
+  <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
 {% endblock head %}
 {% block content %}
+  <h1>{{boat.name}}</h1>
+  {% for einweisung in einweisungen %}
+      {% if forloop.first %}
+          <table>
+              <thead>
+                <th>Nutzer</th>
+                <th>Einweisung</th>
+              </thead>
+      {% endif %}
+      <tr>
+        <td>{{einweisung.user}}</td>
+        {% if einweisung.einweisung %}
+              <td><span class="glyphicon"></td>
+        {% else %}
+              <td><span class="glyphicon"></td>
+        {% endif %}
+
+
+      </tr>
+  {% endfor %}
+
 {% endblock content %}
