@@ -278,7 +278,7 @@ def instandsetzung(request,pk):
 def einweisung(request,pk):
     boat = models.Boot.objects.get(id=pk)
     nutzer = request.user
-    einweisungen = models.Einweisung.filter(boot=boat)
+    einweisungen = models.Einweisung.objects.filter(boot=boat)
     context_dict = {'boat':boat,'einweisungen':einweisungen}
     if request.method == 'POST':
         form = forms.EinweisungForm(data=request.POST)
