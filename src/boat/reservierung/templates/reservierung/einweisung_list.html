@@ -8,7 +8,7 @@
 {% block content %}
 
   <h1>Einweisungen</h1>
-  <table>
+  <table class="table table-bordered">
     <thead>
       <th>Boot</th>
       <th>User</th>
@@ -18,7 +18,11 @@
         <tr>
           <td>{{einweisung.boot}}</td>
           <td>{{einweisung.user}}</td>
-          <td>{{einweisung.einweisung}}</td>
+          {% if einweisung.einweisung %}
+                <td><span class="glyphicon glyphicon-ok"></td>
+          {% else %}
+                <td><span class="glyphicon glyphicon-remove"></td>
+          {% endif %}
         </tr>
     {% endfor %}
 
