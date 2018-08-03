@@ -289,7 +289,7 @@ def einweisung(request,pk):
             einweisung.einweisung = form.cleaned_data.get('einweisung')
             einweisung.save()
             return HttpResponseRedirect(reverse('reesrvierung:boote'))
-        else:
-            form = form.EinweisungForm()
-            context_dict['form'] = form
+    else:
+        form = form.EinweisungForm()
+        context_dict['form'] = form
     return render(request, 'einweisung.html', context_dict)
