@@ -62,4 +62,4 @@ class InstandsetzungForm(forms.Form):
 
 class EinweisungForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all())
-    einweisung = forms.BooleanField()
+    einweisung = forms.BooleanField(required=False)

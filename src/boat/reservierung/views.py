@@ -287,8 +287,8 @@ def einweisung(request,pk):
                 return HttpResponseRedirect(reverse('reservierung:boote'))
             else:
                 einweisung = models.Einweisung()
-                einweisung.user = boat
-                einweisung.boot = form.cleaned_data.get('boat')
+                einweisung.user = form.cleaned_data.get('user')
+                einweisung.boot = boat
                 einweisung.einweisung = form.cleaned_data.get('einweisung')
                 einweisung.save()
                 return HttpResponseRedirect(reverse('reservierung:boote'))
