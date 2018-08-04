@@ -7,7 +7,7 @@
   <h1>Einweisung Ändern</h1>
   <form class="" method="post">
     {% csrf_token %}
-    {{bootstrap_form form}}
+    {{ form.as_p }}
     <input type="submit" name="Submit" value="Update">
   </form>
 {% endblock content %}
