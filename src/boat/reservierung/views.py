@@ -67,6 +67,7 @@ class EinweisungUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
     model = models.Einweisung
+    template_name = 'reservierung/einweisung_update.html'
     fields = ['einweisung']
 
 @login_required(login_url='account:login')
