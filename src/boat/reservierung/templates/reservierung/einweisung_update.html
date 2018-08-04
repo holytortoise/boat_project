@@ -6,7 +6,8 @@
 
   <h1>Einweisung Ändern</h1>
   <h3>{{object.boot}}</h3>
-  <hr>{{object.user}}
+  <h3>{{object.user}}</h3>
+  <hr>
   <form class="" method="post">
     {% csrf_token %}
     {{ form.as_p }}

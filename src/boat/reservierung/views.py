@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
+from django.contrib.auth.decorators import permission_required
 
 import datetime
 from . import models
@@ -240,6 +241,7 @@ def reservierung_user(request):
     return render(request, 'reservierung/reservierung_user.html',{'user':user,'boats_return':boats_return})
 
 @login_required(login_url='account:login')
+@premission_required('reservierung.can_add_boot')
 def boot_erstellen(request):
 
     ImageFormSet = modelformset_factory(models.Images,form=forms.ImageForm, extra=3)
@@ -265,7 +267,6 @@ def boot_erstellen(request):
         formset = ImageFormSet(queryset=models.Images.objects.none())
     return render(request, 'boot_erstellen.html',
                 {'postForm':postForm,'formset':formset})
-
 
 @login_required(login_url='account:login')
 def boot_details(request,pk):
