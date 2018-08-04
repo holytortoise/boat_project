@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
+{% load bootstrap3 %}
 {% block titel %}Einweisung Update{% endblock titel %}
 {% block content %}
 
-  <h1>Reservierung wirklich löschen?</h1>
+  <h1>Einweisung Ändern</h1>
   <form class="" method="post">
     {% csrf_token %}
-    <p>Wollen sie "{{object}}" wirklich löschen?</p>
-    <input class="btn btn-danger" type="submit" name="" value="Confirm">
+    {{bootstrap_form form}}
+    <input type="submit" name="Submit" value="Update">
   </form>
 {% endblock content %}
