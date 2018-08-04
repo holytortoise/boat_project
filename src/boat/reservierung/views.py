@@ -283,7 +283,7 @@ def einweisung(request,pk):
     if request.method == 'POST':
         form = forms.EinweisungForm(data=request.POST)
         if form.is_valid():
-            info = models.Einweisung.objects.get(user=nutzer,boot=boat)
+            info = models.Einweisung.objects.filter(user=nutzer,boot=boat)
             if info.exists():
                 return HttpResponseRedirect(reverse('reservierung:boote'))
             else:
