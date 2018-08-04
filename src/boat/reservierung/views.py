@@ -49,6 +49,26 @@ class EinweisungList(LoginRequiredMixin, ListView):
     context_object_name = 'einweisungen'
 
 
+class EinweisungDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'account:login'
+    redirect_field_name : 'redirect_to'
+    model = models.Einweisung
+    success_url = reverse_lazy('reservierung:einweisung-list')
+    template_name = 'reservierung/einweisung_delete.html'
+
+class EinweisungDetail(LoginRequiredMixin, DetailView):
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = models.Einweisung
+    context_object_name = 'einweisung'
+    template_name = 'reservierung/einweisung_detail.html'
+
+class EinweisungUpdate(LoginRequiredMixin, UpdateView):
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = models.Einweisung
+    fields = ['einweisung']
+
 @login_required(login_url='account:login')
 def boot_liste(request):
     liste = []

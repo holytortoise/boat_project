@@ -13,6 +13,7 @@
       <th>Boot</th>
       <th>User</th>
       <th>Einweisung</th>
+      <th>Details</th>
     </thead>
     {% for einweisung in einweisungen  %}
         <tr>
@@ -23,6 +24,7 @@
           {% else %}
                 <td><span class="glyphicon glyphicon-remove"></td>
           {% endif %}
+          <td><a href="{% url 'reservierung:einweisung-detail' pk=einweisung.id %}">Details</a></td>
         </tr>
     {% endfor %}
 

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block titel %}Einweisung Detail{% endblock titel %}
+{% block content %}
+<h1>Einweisung</h1>
+<h3>{{einweisung.boot}}</h3>
+<h3>{{einweisung.user}}</h3>
+<h3>{{einweisung.einweisung}}</h3>
+
+<a class="btn btn-danger" href="{% url 'reservierung:einweisung-delete' pk=einweisung.id %}">Löschen</a>
+<a class="btn btn-warning" href="{% url 'reservierung:einweisung-update' pk=einweisung.id %}">Ändern</a>
+{% endblock content %}
