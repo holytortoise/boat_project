@@ -241,7 +241,7 @@ def reservierung_user(request):
     return render(request, 'reservierung/reservierung_user.html',{'user':user,'boats_return':boats_return})
 
 @login_required(login_url='account:login')
-@permission_required('reservierung.can_add_boot')
+@permission_required('reservierung.can_add_boot', raise_exception=True)
 def boot_erstellen(request):
 
     ImageFormSet = modelformset_factory(models.Images,form=forms.ImageForm, extra=3)
