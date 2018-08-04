@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView,FormView
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixin,AccessMixin
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import permission_required
@@ -21,6 +21,7 @@ class ReservierungsList(LoginRequiredMixin, ListView):
 
 
 class ReservierungDelete(LoginRequiredMixin, DeleteView):
+    permission_required = 'reservierung.can_delete_reservierung'
     login_url = 'account:login'
     redirect_field_name : 'redirect_to'
     model = models.Reservierung
@@ -50,7 +51,9 @@ class EinweisungList(LoginRequiredMixin, ListView):
     context_object_name = 'einweisungen'
 
 
-class EinweisungDelete(LoginRequiredMixin, DeleteView):
+class EinweisungDelete(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin, DeleteView):
+    permission_required = 'reservierung.can_delete_einweisung'
+    raise_exception = True
     login_url = 'account:login'
     redirect_field_name : 'redirect_to'
     model = models.Einweisung
@@ -298,6 +301,7 @@ def instandsetzung(request,pk):
     return render(request, 'instandsetzung.html', context_dict)
 
 @login_required(login_url='account:login')
+@permission_required('reservierung.can_add_einweisung', raise_exception=True)
 def einweisung(request,pk):
     boat = models.Boot.objects.get(id=pk)
     nutzer = request.user
