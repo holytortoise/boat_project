@@ -5,6 +5,8 @@
 {% block content %}
 
   <h1>Einweisung Ändern</h1>
+  <h3>{{object.boot}}</h3>
+  <hr>{{object.user}}
   <form class="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
