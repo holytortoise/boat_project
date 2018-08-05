@@ -197,8 +197,6 @@ def reservierung_form(request):
                                     elif boat_reserv.e_Datum == form.cleaned_Data.get("a_Datum"):
                                         free_boat = False
                                         break
-                                    elif boat_reserv.a_Datum > form.cleaned_data.get("e_Zeit"):
-                                        free_boat = True
                                     elif boat_reserv.a_Datum == form.cleaned_data.get("e_Datum"):
                                         free_boat = False
                                         break
@@ -206,8 +204,8 @@ def reservierung_form(request):
                                     free_boats.append(boat)
                             else:
                                 free_boats.append(boat)
-                else:
-                    free_boats = models.Boat.objects.all()
+                        else:
+                            free_boats = models.Boat.objects.all()
     else:
         form = forms.ReservierungForm()
     return render(request, 'reservierung/reservierung_form.html',{'form':form,
