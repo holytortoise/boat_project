@@ -205,7 +205,7 @@ def reservierung_form(request):
                         else:
                             free_boats.append(boat)
                 else:
-                    free_boats = models.Boat.objects.exclude(if=form.cleaned_data.get("reserviertesBoot"))
+                    free_boats = models.Boat.objects.exclude(id=form.cleaned_data.get("reserviertesBoot"))
     else:
         form = forms.ReservierungForm()
     return render(request, 'reservierung/reservierung_form.html',{'form':form,
