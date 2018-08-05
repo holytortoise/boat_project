@@ -199,8 +199,8 @@ def reservierung_form(request):
                                     elif boat_reserv.a_Datum == form.cleaned_data.get("e_Datum"):
                                         free_boat = False
                                         break
-                                if free_boat:
-                                    free_boats.append(boat)
+                            if free_boat:
+                                free_boats.append(boat)
                         else:
                             free_boats.append(boat)
                 else:
