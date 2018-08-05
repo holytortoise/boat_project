@@ -163,7 +163,7 @@ def reservierung_form(request):
                 moeglich = True
             if moeglich:
                 staff = User.objects.filter(is_staff=True)
-                message = "{} hat von {} bis {} das Boot {} reserviert.".format(request.user,form.cleaned_data.get('a_Datum'),form.cleaned_data.get('e_Datum'),form.cleaned_data.get('reserviertesBoot'))
+                message = "{} hat von {} bis {} das Boot {} reserviert.".format(request.user,form.cleaned_data.get('a_Datum'),form.cleaned_data.get('e_Datum'),models.Boot.objects.get(id=form.cleaned_data.get('reserviertesBoot')).name)
                 email_from = settings.EMAIL_HOST_USER
                 print(staff)
                 print(message)
@@ -186,7 +186,7 @@ def reservierung_form(request):
                     for boat in boats:
                         boats_reservs = models.Reservierung.objects.filter(reserviertesBoot=boat)
                         if boats_reservs.exists():
-                            free_boats = False
+                            free_boat = False
                             for boat_reserv in boats_reservs:
                                 if boat_reserv.a_Datum < form.cleaned_data.get("a_Datum") and form.cleaned_data.get("a_Datum") < boat_reserv.e_Datum:
                                     free_boat = False
@@ -202,10 +202,10 @@ def reservierung_form(request):
                                         break
                                 if free_boat:
                                     free_boats.append(boat)
-                            else:
-                                free_boats.append(boat)
                         else:
-                            free_boats = models.Boat.objects.all()
+                            free_boats.append(boat)
+                else:
+                    free_boats = models.Boat.objects.exclude(if=form.cleaned_data.get("reserviertesBoot"))
     else:
         form = forms.ReservierungForm()
     return render(request, 'reservierung/reservierung_form.html',{'form':form,
