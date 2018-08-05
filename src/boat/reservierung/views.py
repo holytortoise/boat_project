@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import permission_required
-from django.core.mail import send_mail
+from django.core.mail import send_mail, send_mass_mail
 from django.conf import settings
 from django.contrib.auth.models import User
 import datetime
@@ -165,23 +165,19 @@ def reservierung_form(request):
                 staff = User.objects.filter(is_staff=True)
                 message = "{} hat von {} bis {} das Boot {} reserviert.".format(request.user,form.cleaned_data.get('a_Datum'),form.cleaned_data.get('e_Datum'),models.Boot.objects.get(id=form.cleaned_data.get('reserviertesBoot')).name)
                 email_from = settings.EMAIL_HOST_USER
-                print(staff)
-                print(message)
-                print(email_from)
+                recipient_list = []
                 for staff_user in staff:
-                    print('Sending Email...')
                     if staff_user.email == '':
-                        print('No Email Adress')
+                        pass
                     else:
-                        send_mail('Reservierung',message,email_from,[staff_user.email,])
-                        print('Email sent')
+                        recipient_list.append(staff_user.email)
                 reserv = models.Reservierung()
                 reserv.reserviert_von = request.user
                 reserv.reserviertesBoot = models.Boot.objects.get(id=form.cleaned_data.get("reserviertesBoot"))
                 reserv.a_Datum = form.cleaned_data.get("a_Datum")
                 reserv.e_Datum = form.cleaned_data.get("e_Datum")
                 reserv.save()
-
+                send_mass_mail(('Reservierung',message,email_from,recipient_list),fail_silently=False)
                 return HttpResponseRedirect(reverse('reservierung:index'))
             else:
                 boats = models.Boot.objects.exclude(id=form.cleaned_data.get("reserviertesBoot"))
