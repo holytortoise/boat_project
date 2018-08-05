@@ -185,7 +185,7 @@ def reservierung_form(request):
                 if boats.exists():
                     for boat in boats:
                         boats_reservs = models.Reservierung.objects.filter(reserviertesBoot=boat)
-                        if boat_reservs.exists():
+                        if boats_reservs.exists():
                             free_boats = False
                             for boat_reserv in boats_reservs:
                                 if boat_reserv.a_Datum < form.cleaned_data.get("a_Datum") and form.cleaned_data.get("a_Datum") < boat_reserv.e_Datum:
