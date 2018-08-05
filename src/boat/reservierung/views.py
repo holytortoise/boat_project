@@ -20,8 +20,9 @@ class ReservierungsList(LoginRequiredMixin, ListView):
     context_object_name = 'reservierungen'
 
 
-class ReservierungDelete(LoginRequiredMixin, DeleteView):
+class ReservierungDelete(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin DeleteView):
     permission_required = 'reservierung.can_delete_reservierung'
+    raise_exception = True
     login_url = 'account:login'
     redirect_field_name : 'redirect_to'
     model = models.Reservierung
@@ -67,7 +68,8 @@ class EinweisungDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'einweisung'
     template_name = 'reservierung/einweisung_detail.html'
 
-class EinweisungUpdate(LoginRequiredMixin, UpdateView):
+class EinweisungUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin, UpdateView):
+    permission_required = 'reservierung.can_change_einweisung'
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
     model = models.Einweisung
@@ -87,39 +89,8 @@ def boot_liste(request):
 
 @login_required(login_url='account:login')
 def index(request):
-    current_week = datetime.date.today().isocalendar()[1]
-    current_year = datetime.date.today().isocalendar()[0]
-    is_week = None
-    if request.method == 'POST':
-        jahr = int(request.POST['jahr'])
-        woche = int(request.POST['woche'])
-        if request.POST.__contains__('next_week'):
-            if woche == datetime.date(jahr,12,28).isocalendar()[1]:
-                woche = 1
-                jahr = jahr + 1
-            else:
-                woche = woche + 1
-        if request.POST.__contains__('last_week'):
-            if woche == 1:
-                jahr = jahr - 1
-                woche = datetime.date(jahr,12,28).isocalendar()[1]
-            else:
-                woche = woche - 1
-    else:
-        jahr = datetime.date.today().isocalendar()[0]
-        woche = datetime.date.today().isocalendar()[1]
-    if woche == current_week and jahr == current_year:
-        is_week = True
-    if woche != current_week or jahr != current_year:
-        is_week = False
-
-    datum = str(jahr)+'-W'+str(woche)
-    r = datetime.datetime.strptime(datum +'-0',"%Y-W%W-%w")
-    start = r -datetime.timedelta(days=r.weekday())
-    end = start + datetime.timedelta(days=6)
-    start = start.strftime('%d.%m')
-    end = end.strftime('%d.%m')
-
+    today = datetime.date.today()
+    end = today + datetime.timedelta(30)
     boats = models.Boot.objects.all()
     if boats.exists():
         boats_return = []
@@ -140,12 +111,7 @@ def index(request):
                 reservierungen = None
         if len(boats_return) == 0:
             boats_return = None
-        context_dict = {'boats_return':boats_return,'reserv':reservierungen,'woche':woche,
-        'jahr':jahr,'current_week':current_week,'current_year':current_year,
-        'is_week':is_week,'start':start,'end':end}
-        return render(request, 'index.html', context_dict)
-    context_dict = {'woche':woche,'jahr':jahr,'current_week':current_week,
-    'current_year':current_year,'is_week':is_week,'start':start,'end':end}
+    context_dict = {'boats_return':boats_return,'reserv':reservierungen,'today':today,'end':end}
     return render(request,'index.html', context_dict)
 
     return render(request, 'index.html')
