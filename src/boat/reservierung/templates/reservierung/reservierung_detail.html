@@ -6,7 +6,7 @@
 
   <h2>Reserviertes Boot: {{reservierung.reserviertesBoot}}</h2>
   {% if user.is_superuser  %}
-        <h3>Reserviert von: {{reservierung.reserviert_von.last_name}}</h3>
+        <h3>Reserviert von:{{reservierung.reserviert_von.first_name}} {{reservierung.reserviert_von.last_name}}</h3>
   {% endif %}
   <h3>Von {{reservierung.a_Datum|date:"d.m.o"}} {{reservierung.a_Zeit|time:"H:i"}} bis
   {{reservierung.e_Datum|date:"d.m.o"}} {{reservierung.e_Zeit|time:"H:i"}}</h3>
