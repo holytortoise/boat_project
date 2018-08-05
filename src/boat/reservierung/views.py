@@ -20,7 +20,7 @@ class ReservierungsList(LoginRequiredMixin, ListView):
     context_object_name = 'reservierungen'
 
 
-class ReservierungDelete(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin DeleteView):
+class ReservierungDelete(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin, DeleteView):
     permission_required = 'reservierung.can_delete_reservierung'
     raise_exception = True
     login_url = 'account:login'
