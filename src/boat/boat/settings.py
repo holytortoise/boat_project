@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
+    'mailer',
     'account',
     'reservierung',
 ]
@@ -141,7 +142,8 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'reservierung:index'
 LOGOUT_REDIRECT_URL = 'reservierung:index'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'mailer.backend.DbBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
