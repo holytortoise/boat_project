@@ -100,10 +100,9 @@ def index(request):
                 reserviertesBoot=boat).order_by('a_Datum')
             if reservierungen.exists():
                 for reservierung in reservierungen:
-                    if reservierung.a_Datum.isocalendar()[1] < woche and woche < reservierung.e_Datum.isocalendar()[1]:
+                    if reservierung.a_Datum < today and reservierung.e_Datum >= today:
                         boat_return.append(reservierung)
-                    if ((reservierung.a_Datum.isocalendar()[1] == woche and reservierung.a_Datum.isocalendar()[0] == jahr)
-                        or (reservierung.e_Datum.isocalendar()[1] == woche and reservierung.e_Datum.isocalendar()[0] == jahr)):
+                    if reservierung.a_Datum >= today and reservierung.a_Datum < end:
                         boat_return.append(reservierung)
                 if len(boat_return) != 0:
                     boats_return.append(boat_return)
