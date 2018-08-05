@@ -8,11 +8,14 @@
 {% endblock head %}
 {% block content %}
 <h1>{{boat.name}}</h1>
-<ul>
+<table class="table table-hover">
 {% for eintrag in einträge  %}
-    <li>{{eintrag.eintrag}} <a class="btn btn-success" href="{% url 'reservierung:instandsetzung-delete' pk=eintrag.id %}"><span class="glyphicon glyphicon-ok"></span><a/></li>
+<tr>
+    <td>{{eintrag.eintrag}}</td>
+    <td><a class="btn btn-success" href="{% url 'reservierung:instandsetzung-delete' pk=eintrag.id %}"><span class="glyphicon glyphicon-ok"></span></a></td>
+</tr>
 {% endfor %}
-</ul>
+</table>
 
 <form class="" method="post">
   {% csrf_token %}
