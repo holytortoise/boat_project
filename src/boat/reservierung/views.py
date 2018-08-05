@@ -7,7 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin,PermissionRequiredMixi
 from django.contrib.auth.decorators import login_required
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import permission_required
-
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.models import User
 import datetime
 from . import models
 from . import forms
@@ -160,12 +162,18 @@ def reservierung_form(request):
             else:
                 moeglich = True
             if moeglich:
+                staff = User.objects.filter(is_staff=True)
+                message = "{} hat von {} bis {} das Boot {} reserviert.".format(request.user,form.cleaned_data.get('a_Datum'),form.cleaned_data.get('e_Datum'),form.cleaned_data.get('reserviertesBoot'))
+                email_from = settings.EMAIL_HOST_USER
+                for staff_user in staff:
+                        send_mail('Reservierung',message,email_from,staff_user.email)
                 reserv = models.Reservierung()
                 reserv.reserviert_von = request.user
                 reserv.reserviertesBoot = models.Boot.objects.get(id=form.cleaned_data.get("reserviertesBoot"))
                 reserv.a_Datum = form.cleaned_data.get("a_Datum")
                 reserv.e_Datum = form.cleaned_data.get("e_Datum")
                 reserv.save()
+
                 return HttpResponseRedirect(reverse('reservierung:index'))
             else:
                 boats = models.Boat.objects.exclude(id=form.cleaned_data.get("reserviertesBoot"))
