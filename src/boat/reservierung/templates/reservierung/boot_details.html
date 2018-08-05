@@ -30,16 +30,15 @@
           <table class="table table-bordered">
             <thead>
               <th>Nutzer</th>
-              <th>Ja</th>
-              <th>Nein</th>
+              <th>Einweisung</th>
             </thead>
       {% endif %}
       <tr>
       <td>{{nutzer.user}}</td>
       {% if nutzer.einweisung %}
-            <td><span class="glyphicon glyphicon-ok"></td>
+            <td class="success"><span class="glyphicon glyphicon-ok"></td>
       {% else %}
-            <td><span class="glyphicon glyphicon-remove"></td>
+            <td class="danger"><span class="glyphicon glyphicon-remove"></td>
       {% endif %}
       </tr>
   {% endfor %}
