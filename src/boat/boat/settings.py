@@ -141,4 +141,4 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'reservierung:index'
 LOGOUT_REDIRECT_URL = 'reservierung:index'
 
-SECURE_SSL_REDIRECT = True
+#SECURE_SSL_REDIRECT = True
