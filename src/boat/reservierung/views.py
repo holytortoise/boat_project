@@ -166,7 +166,7 @@ def reservierung_form(request):
                 message = "{} hat von {} bis {} das Boot {} reserviert.".format(request.user,form.cleaned_data.get('a_Datum'),form.cleaned_data.get('e_Datum'),form.cleaned_data.get('reserviertesBoot'))
                 email_from = settings.EMAIL_HOST_USER
                 for staff_user in staff:
-                        send_mail('Reservierung',message,email_from,staff_user.email)
+                        send_mail('Reservierung',message,email_from,[staff_user.email,])
                 reserv = models.Reservierung()
                 reserv.reserviert_von = request.user
                 reserv.reserviertesBoot = models.Boot.objects.get(id=form.cleaned_data.get("reserviertesBoot"))
