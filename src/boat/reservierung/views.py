@@ -177,7 +177,7 @@ def reservierung_form(request):
                 reserv.a_Datum = form.cleaned_data.get("a_Datum")
                 reserv.e_Datum = form.cleaned_data.get("e_Datum")
                 reserv.save()
-                send_mass_mail(('Reservierung',message,email_from,recipient_list),fail_silently=False)
+                send_mail('Reservierung',message,email_from,recipient_list)
                 return HttpResponseRedirect(reverse('reservierung:index'))
             else:
                 boats = models.Boot.objects.exclude(id=form.cleaned_data.get("reserviertesBoot"))
