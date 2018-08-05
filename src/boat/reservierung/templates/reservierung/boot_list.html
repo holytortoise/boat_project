@@ -19,14 +19,15 @@
       </table>
       <a class="btn btn-primary" href="{% url 'reservierung:instandsetzung' pk=image.boot.id %}">Instandsetzung</a>
       <a class="btn btn-primary" href="{% url 'reservierung:boot-details' pk=image.boot.id %}">Details</a>
+      {% if user.is_superuser %}
       <a class="btn btn-primary" href="{% url 'reservierung:einweisung' pk=image.boot.id %}">Einweisung</a>
         {% endif %}
-
+      {% endif %}
     {% endfor %}
-
   {% endfor %}
   <br>
   <br>
-
-<a class="btn btn-primary" href="{% url 'reservierung:boot-erstellen' %}">Boot hinzufügen</a>
+{% if user.is_superuser %}
+    <a class="btn btn-primary" href="{% url 'reservierung:boot-erstellen' %}">Boot hinzufügen</a>
+{% endif %}
 {% endblock content %}
