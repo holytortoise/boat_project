@@ -24,6 +24,7 @@
       <li>{{eintrag.eintrag}}</li>
   {% endfor %}
   </ul>
+  {% if user.is_superuser  %}
   {% for nutzer in einweisung %}
       {% if forloop.first %}
           <table class="table table-bordered">
@@ -33,9 +34,14 @@
               <th>Nein</th>
             </thead>
       {% endif %}
+      <tr>
       <td>{{nutzer.user}}</td>
-      <td>X</td>
-      <td>X</td>
+      {% if nutzer.einweisung %}
+            <td><span class="glyphicon glyphicon-ok"></td>
+      {% else %}
+            <td><span class="glyphicon glyphicon-remove"></td>
+      {% endif %}
+      </tr>
   {% endfor %}
-
+{% endif %}
 {% endblock content %}
