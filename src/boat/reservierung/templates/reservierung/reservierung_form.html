@@ -71,7 +71,7 @@
       <h3>Keine Freien Boote für diesen Zeitraum</h3>
 {% endfor %}
 {% endif %}
-  <form method="post">
+  <form method="post" autocomplete="off">
     {% csrf_token %}
     {% bootstrap_form form %}
     <input type="submit" class="btn btn-primary" name="reservieren" value="Reservieren">

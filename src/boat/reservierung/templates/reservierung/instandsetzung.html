@@ -17,7 +17,7 @@
 {% endfor %}
 </table>
 
-<form class="" method="post">
+<form class="" method="post" autocomplete="off">
   {% csrf_token %}
   {% bootstrap_form form %}
   <input type="submit" class="btn btn-primary" name="submit" value="Submit">
