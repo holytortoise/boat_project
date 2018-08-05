@@ -170,8 +170,11 @@ def reservierung_form(request):
                 print(email_from)
                 for staff_user in staff:
                     print('Sending Email...')
-                    send_mail('Reservierung',message,email_from,[staff_user.email,])
-                    print('Email sent')
+                    if staff_user.email == '':
+                        print('No Email Adress')
+                    else:
+                        send_mail('Reservierung',message,email_from,[staff_user.email,])
+                        print('Email sent')
                 reserv = models.Reservierung()
                 reserv.reserviert_von = request.user
                 reserv.reserviertesBoot = models.Boot.objects.get(id=form.cleaned_data.get("reserviertesBoot"))
