@@ -181,7 +181,7 @@ def reservierung_form(request):
 
                 return HttpResponseRedirect(reverse('reservierung:index'))
             else:
-                boats = models.Boat.objects.exclude(id=form.cleaned_data.get("reserviertesBoot"))
+                boats = models.Boot.objects.exclude(id=form.cleaned_data.get("reserviertesBoot"))
                 if boats.exists():
                     for boat in boats:
                         boat_reservs = models.Reservierung.objects.filter(reserviertesBoot=boat)
