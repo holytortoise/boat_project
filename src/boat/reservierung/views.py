@@ -184,7 +184,7 @@ def reservierung_form(request):
                 boats = models.Boot.objects.exclude(id=form.cleaned_data.get("reserviertesBoot"))
                 if boats.exists():
                     for boat in boats:
-                        boat_reservs = models.Reservierung.objects.filter(reserviertesBoot=boat)
+                        boats_reservs = models.Reservierung.objects.filter(reserviertesBoot=boat)
                         if boat_reservs.exists():
                             free_boats = False
                             for boat_reserv in boats_reservs:
