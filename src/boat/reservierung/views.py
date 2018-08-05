@@ -85,7 +85,7 @@ class InstandsetzungDelete(LoginRequiredMixin, DeleteView):
     redirect_field_name : 'redirect_to'
     model = models.Instandsetzung
     success_url = reverse_lazy('reservierung:boote')
-    template_name = 'reservierung/einweisung_delete.html'
+    template_name = 'reservierung/instandsetzung_delete.html'
 
 @login_required(login_url='account:login')
 def boot_liste(request):
