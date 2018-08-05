@@ -16,14 +16,15 @@ def create_choice():
 class ReservierungForm(forms.Form):
     reserviertesBoot = forms.ChoiceField(choices=create_choice())
     a_Datum = forms.DateField(label='Anfangs Datum')
-    e_Datum = forms.DateField(label='End Datum')
+    e_Datum = forms.DateField(label='End Datum',required=False)
 
 
     def clean(self):
         cleaned_data = super(ReservierungForm, self).clean()
         a_Datum = cleaned_data.get('a_Datum')
         e_Datum = cleaned_data.get('e_Datum')
-
+        if e_Datum == None:
+            e_Datum = a_Datum
         if a_Datum and e_Datum:
             # Only do something if both fields are valid so far
             if a_Datum < datetime.date.today():
