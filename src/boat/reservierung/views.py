@@ -77,6 +77,14 @@ class EinweisungUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin, U
     template_name = 'reservierung/einweisung_update.html'
     fields = ['einweisung']
 
+
+class InstandsetzungDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'account:login'
+    redirect_field_name : 'redirect_to'
+    model = models.Instandsetzung
+    success_url = reverse_lazy('reservierung:einweisung-list')
+    template_name = 'reservierung/einweisung_delete.html'
+
 @login_required(login_url='account:login')
 def boot_liste(request):
     liste = []
@@ -127,7 +135,7 @@ def reservierung_form(request):
     if request.method == 'POST':
         form = forms.ReservierungForm(data=request.POST)
         if form.is_valid():
-            free_boats = []            
+            free_boats = []
             reservierungen = models.Reservierung.objects.filter(
                 reserviertesBoot=form.cleaned_data.get("reserviertesBoot"))
             if reservierungen.exists():

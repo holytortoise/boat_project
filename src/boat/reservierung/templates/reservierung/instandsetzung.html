@@ -10,7 +10,7 @@
 <h1>{{boat.name}}</h1>
 <ul>
 {% for eintrag in einträge  %}
-    <li>{{eintrag.eintrag}}</li>
+    <li>{{eintrag.eintrag}} <a class="btn btn-success" href="{% url 'reservierung:instandsetzung-delete' %}"><span class="glyphicon glyphicon-ok"></span><a/></li>
 {% endfor %}
 </ul>
 
