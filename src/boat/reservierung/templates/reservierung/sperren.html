@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block titel %}Sperren{% endblock titel %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
+{% endblock head %}
+{% block content %}
+
+<h1>{{ boat.name }}</h1>
+<h3>Wollen sie {{boat.name}} wirklich sperren?</h3>
+<form class="" method="post">
+  <input type="submit" name="Ja" value="ja">
+  <input type="submit" name="Nein" value="nein">
+</form>
+{% endblock content %}

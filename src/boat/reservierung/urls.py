@@ -20,4 +20,5 @@ urlpatterns = [
     path('reservierung/einweisung/löschen/<int:pk>/', views.EinweisungDelete.as_view(), name='einweisung-delete'),
     path('reservierung/einweisung/detail/<int:pk>/', views.EinweisungDetail.as_view(), name='einweisung-detail'),
     path('reservierung/einweisung/update/<int:pk>/', views.EinweisungUpdate.as_view(), name='einweisung-update'),
+    path('reservierung/boote/sperren/<int:pk>/', views.BootSperren.as_view(), name='boot-sperren'),
 ]
