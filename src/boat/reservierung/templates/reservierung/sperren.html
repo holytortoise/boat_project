@@ -10,6 +10,7 @@
 <h1>{{ boat.name }}</h1>
 <h3>Wollen sie {{boat.name}} wirklich sperren?</h3>
 <form class="" method="post">
+  {% csrf_token %}
   <input type="submit" name="Ja" value="ja">
   <input type="submit" name="Nein" value="nein">
 </form>
