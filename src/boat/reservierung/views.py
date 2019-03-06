@@ -91,7 +91,7 @@ class BootSperren(LoginRequiredMixin, UpdateView):
     login_url = 'account:login'
     redirect_field_name : 'redirect_to'
     model = models.Boot
-    success_url ? reverse_lazy('reservierung:boote')
+    success_url = reverse_lazy('reservierung:boote')
     template_name = 'reservierung/sperren.html'
 
 
