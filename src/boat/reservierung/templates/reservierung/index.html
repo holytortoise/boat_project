@@ -28,6 +28,9 @@
           <thead>
             <th>Anfang</th>
             <th>Ende</th>
+            <th>Ziel</th>
+            <th>Anlegeplatz</th>
+            <th>Reserviert von</th>
             <th>Details</th>
           </thead>
           <tbody>
@@ -35,6 +38,9 @@
     <tr>
       <td id="r_anfang">{{ reserv.a_Datum|date:"d.m.o" }} {{ reserv.a_Zeit|date:"H:i" }}</td>
       <td id="r_ende">{{ reserv.e_Datum|date:"d.m.o" }} {{ reserv.e_Zeit|date:"H:i" }}</td>
+      <td>{{ reserv.ziel }}</td>
+      <td>{{ reserv.anlegeplatz }}</td>
+      <td>{{ reserv.reserviert_von }}</td>
       <td id="r_details"><a href="{% url 'reservierung:detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
     </tr>
     {% if forloop.last %}

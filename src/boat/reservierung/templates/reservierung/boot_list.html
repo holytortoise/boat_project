@@ -11,6 +11,10 @@
         {% if forloop.first  %}
         <div class="wrapper">
         <h3 class="top">{{image.boot.name}}</h3>
+        {% if image.boot.sperrung %}
+            <h3>GESPERRT</h3>
+        {% endif %}
+
         </div>
         <table>
         {% endif %}
