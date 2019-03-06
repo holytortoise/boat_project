@@ -11,7 +11,7 @@
 <h3>Wollen sie {{boat.name}} wirklich sperren?</h3>
 <form class="" method="post">
   {% csrf_token %}
-  <input type="submit" name="Ja" value="ja">
-  <input type="submit" name="Nein" value="nein">
+  {{ bootstrap_form form }}
+  <input class="btn btn-danger" type="submit" name="Submit" value="Submit">
 </form>
 {% endblock content %}
