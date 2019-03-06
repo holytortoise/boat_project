@@ -17,6 +17,8 @@ class ReservierungForm(forms.Form):
     reserviertesBoot = forms.ChoiceField(choices=create_choice())
     a_Datum = forms.DateField(label='Anfangs Datum')
     e_Datum = forms.DateField(label='End Datum')
+    ziel = forms.CharField(label='Ziel')
+    anlegeplatz = forms.CharField(label='Anlegeplatz')
 
 
     def clean(self):

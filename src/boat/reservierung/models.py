@@ -10,6 +10,7 @@ import datetime
 class Boot(models.Model):
     name = models.CharField(max_length=255)
     info = models.TextField(default="Keine Information Verfügbar")
+    sperrung = models.BooleanField(default=False)
 
     def get_name(self):
         return "{}".format(self.name)
@@ -23,6 +24,8 @@ class Boot(models.Model):
 class Reservierung(models.Model):
     reserviert_von = models.ForeignKey(User, related_name="Reserviert",on_delete=models.CASCADE)
     reserviertesBoot = models.ForeignKey(Boot,on_delete=models.CASCADE)
+    ziel = models.TextField(default="")
+    anlegeplatz = models.TextField(default="")
     a_Datum = models.DateField("Start Datum", default=datetime.date.today)
     e_Datum = models.DateField("End Datum", default=datetime.date.today)
 
