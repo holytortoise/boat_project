@@ -336,5 +336,5 @@ def boot_sperren(request,pk):
             return HttpResponseRedirect(reverse('reservierung:boote'))
     else:
         form = forms.BootSperrForm()
-        context_dict['form'] = form
+        context_dict['form':form,'boot':boat]
     return render(request, 'sperren.html', context_dict)
