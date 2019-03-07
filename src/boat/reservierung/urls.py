@@ -21,4 +21,5 @@ urlpatterns = [
     path('reservierung/einweisung/detail/<int:pk>/', views.EinweisungDetail.as_view(), name='einweisung-detail'),
     path('reservierung/einweisung/update/<int:pk>/', views.EinweisungUpdate.as_view(), name='einweisung-update'),
     path('reservierung/boote/instandsetzung/sperren/<int:pk>/', views.BootSperren.as_view(), name='boot-sperren'),
+    path('reservierung/boote/instandsetzung/update/<int:pk>', views.InstandsetzungUpdate.as_view(), name='instandsetzung-update'),
 ]
