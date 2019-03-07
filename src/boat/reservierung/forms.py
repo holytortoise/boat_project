@@ -74,4 +74,4 @@ class EinweisungForm(forms.Form):
 
 
 class BootSperrForm(forms.Form):
-    sperrung = forms.BooleanField()
+    sperrung = forms.BooleanField(required=False)
