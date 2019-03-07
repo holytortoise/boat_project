@@ -80,8 +80,8 @@ class Instandsetzung(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
     user = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
     eintrag = models.TextField()
-    geplant_am = models.DateTimeField(default=None)
-    durchfuehrung_durch = models.CharField(max_length=255,default='Ausstehend')
+    geplant_am = models.DateTimeField(default=None,null=True)
+    durchfuehrung_durch = models.CharField(max_length=255,null=True,default='Ausstehend')
 
 
     def __str__(self):
