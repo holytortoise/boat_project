@@ -332,7 +332,7 @@ def boot_sperren(request,pk):
     if request.method == 'POST':
         form = forms.BootSperrForm(data=request.POST)
         if form.is_valid():
-            boat.sperrung = form.cleaned_Data.get('sperrung')
+            boat.sperrung = form.cleaned_data.get('sperrung')
             boat.save()
             return HttpResponseRedirect(reverse('reservierung:boote'))
     else:
