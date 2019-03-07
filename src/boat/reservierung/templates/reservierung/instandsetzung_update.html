@@ -2,6 +2,20 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% block titel %}Einweisung Update{% endblock titel %}
+{% block head %}
+<script src="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.theme.css' %}">
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.theme.css' %}">
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.structure.css' %}">
+<link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
+<script>
+  $(function(){
+    $("#id_geplant_am").datepicker({dateFormat:'yy-mm-dd'});
+  });
+</script>
+
+{% endblock head %}
 {% block content %}
 
   <h1>Instandsetzung ändern</h1>
