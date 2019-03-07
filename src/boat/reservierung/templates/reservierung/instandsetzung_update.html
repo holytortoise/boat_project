@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block titel %}Einweisung Update{% endblock titel %}
+{% block content %}
+
+  <h1>Instandsetzung ändern</h1>
+  <h3>{{object.eintrag}}</h3>
+  <h3>{{object.boot}}</h3>
+  <h3>{{object.user}}</h3>
+  <hr>
+  <form class="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="Submit" value="Update">
+  </form>
+{% endblock content %}

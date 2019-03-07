@@ -95,6 +95,14 @@ class BootSperren(LoginRequiredMixin, UpdateView):
     template_name = 'reservierung/sperren.html'
     fields = ['sperrung']
 
+class InstandsetzungUpdate(LoginRequiredMixin, UpdateView)
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = models.Instandsetzung
+    success_url = reverse_lazy('reservierung:index')
+    template_name = 'reservierung/instandsetzung_update.html'
+    fields = ['eintrag', 'geplant_am', 'durchfuehrung_durch']
+
 
 @login_required(login_url='account:login')
 def boot_liste(request):

@@ -64,6 +64,8 @@ class ImageForm(forms.ModelForm):
 
 class InstandsetzungForm(forms.Form):
     eintrag = forms.CharField(label='Eintrag')
+    geplant_am = forms.DateTimeField(label='Geplant am',required=False)
+    durchfuehrung_durch = forms.CharField(required=False)
 
 
 class EinweisungForm(forms.Form):
