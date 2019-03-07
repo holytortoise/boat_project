@@ -20,6 +20,7 @@ class Boot(models.Model):
 
     class Meta:
         verbose_name_plural = "Boote"
+        ordering = ['name']
 
 class Reservierung(models.Model):
     reserviert_von = models.ForeignKey(User, related_name="Reserviert",on_delete=models.CASCADE)
