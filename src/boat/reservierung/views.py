@@ -323,12 +323,11 @@ def boot_sperren(request,pk):
     boat = models.Boot.objects.get(id=pk)
     context_dict = {'boat':boat}
     if request.method == 'POST':
-        form = forms.BootSperrForm(data=request.POST)
-        if form.is_valid():
-            boat.sperrung = form.cleaned_data.get('sperrung')
+        if request.POST.__contains__('Sperren'):
+            boat.sperrung = True
             boat.save()
             return HttpResponseRedirect(reverse('reservierung:boote'))
-    else:
-        form = forms.BootSperrForm()
-        context_dict['form'] = form
+        else if request.POST.__contains__('Entsperren'):
+            boat.sperrung = False
+            boat.save()
     return render(request, 'sperren.html', context_dict)
