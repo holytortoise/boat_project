@@ -328,7 +328,7 @@ def einweisung(request,pk):
 @login_required(login_url='account:login')
 def boot_sperren(request,pk):
     boat = models.Boot.objects.get(id=pk)
-    context_dict['boat'] = boat
+    context_dict = {'boat':boat}
     if request.method == 'POST':
         form = forms.BootSperrForm(data=request.POST)
         if form.is_valid():
