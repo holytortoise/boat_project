@@ -8,8 +8,8 @@
 {% endblock head %}
 {% block content %}
 
-<h1>{{ object.boat.name }}</h1>
-<h3>Wollen sie {{object.boat.name}} wirklich sperren?</h3>
+<h1>{{ boat.name }}</h1>
+<h3>Wollen sie {{boat.name}} wirklich sperren?</h3>
 <form class="" method="post">
   {% csrf_token %}
   {{  form.as_p }}
