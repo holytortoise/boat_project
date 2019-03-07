@@ -71,3 +71,7 @@ class InstandsetzungForm(forms.Form):
 class EinweisungForm(forms.Form):
     user = forms.ModelChoiceField(queryset=User.objects.all())
     einweisung = forms.BooleanField(required=False)
+
+
+class BootSperrForm(forms.Form):
+    sperrung = forms.BooleanField()

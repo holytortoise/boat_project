@@ -324,3 +324,17 @@ def einweisung(request,pk):
         form = forms.EinweisungForm()
         context_dict['form'] = form
     return render(request, 'einweisung.html', context_dict)
+
+@login_required(login_url='account:login')
+def boot_sperren(request,pk):
+    boat = models.Boot.objects.get(id=pk)
+    if request.method == 'POST':
+        form = forms.BootSperrForm(data=request.POST)
+        if form.is_valid():
+            boat.sperrung = form.cleaned_Data.get('sperrung')
+            boat.save()
+            return HttpResponseRedirect(reverse('reservierung:boote'))
+    else:
+        form = forms.BootSperrForm()
+        context_dict['form'] = form
+    return render(request, 'sperren.html', context_dict)
