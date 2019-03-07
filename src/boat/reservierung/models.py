@@ -80,6 +80,9 @@ class Instandsetzung(models.Model):
     boot = models.ForeignKey(Boot,default=None,on_delete=models.CASCADE)
     user = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
     eintrag = models.TextField()
+    geplant_am = models.DateTimeField(required=False,default=None)
+    durchfuehrung_durch = models.ForeignKey(User, default=None,required=False)
+
 
     def __str__(self):
         return "{} {}".format(self.boot,self.eintrag)

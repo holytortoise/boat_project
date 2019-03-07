@@ -16,6 +16,17 @@
 {% for eintrag in einträge  %}
 <tr>
     <td>{{eintrag.eintrag}}</td>
+    {% if eintrag.geplant_am == None %}
+        <td>Ausstehend</td>
+    {% else %}
+        <td>{{eintrag.geplant_am}}</td>
+    {% endif %}
+    {% if eintrag.durchfuehrung_durch == None %}
+          <td>Ausstehend</td>
+    {% else %}
+          <td>{{eintrag.durchfuehrung_durch}}</td>
+    {% endif %}
+    <td><a href="#">Details</a></td>
     <td><a class="btn btn-success" href="{% url 'reservierung:instandsetzung-delete' pk=eintrag.id %}"><span class="glyphicon glyphicon-ok"></span></a></td>
 </tr>
 {% endfor %}
