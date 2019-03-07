@@ -26,7 +26,7 @@
     {% else %}
           <td>{{eintrag.durchfuehrung_durch}}</td>
     {% endif %}
-    <td><a href="{% url 'reservierung:instandsetzung-update' %}">Details</a></td>
+    <td><a href="{% url 'reservierung:instandsetzung-update' pk=eintrag.id %}">Details</a></td>
     <td><a class="btn btn-success" href="{% url 'reservierung:instandsetzung-delete' pk=eintrag.id %}"><span class="glyphicon glyphicon-ok"></span></a></td>
 </tr>
 {% endfor %}
