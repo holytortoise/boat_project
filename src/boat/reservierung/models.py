@@ -81,7 +81,7 @@ class Instandsetzung(models.Model):
     user = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
     eintrag = models.TextField()
     geplant_am = models.DateTimeField(default=None)
-    durchfuehrung_durch = models.CharField(default=None)
+    durchfuehrung_durch = models.CharField(max_length=255,default=None)
 
 
     def __str__(self):
