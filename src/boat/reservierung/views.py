@@ -95,7 +95,7 @@ class BootSperren(LoginRequiredMixin, UpdateView):
     template_name = 'reservierung/sperren.html'
     fields = ['sperrung']
 
-class InstandsetzungUpdate(LoginRequiredMixin, UpdateView)
+class InstandsetzungUpdate(LoginRequiredMixin, UpdateView):
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
     model = models.Instandsetzung
