@@ -9,6 +9,7 @@
 {% block content %}
 <h3>Liste der Regeln</h3>
 
+
 {% for regel in regeln %}
     {% if forloop.first %}
         <table>
@@ -30,10 +31,15 @@
         {% endif %}
 
       </tr>
-
+    {% if forloop.last %}
+        </table>
+    {% endif %}
+    {% empty %}
+    <h3>Keine Regeln hinterlegt</h3>
 {% endfor %}
 
-</table>
+
+
 <a href="{{ url 'reservierung:regel-create'}}">Erstellen</a>
 
 {% endblock content %}
