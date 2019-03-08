@@ -328,7 +328,7 @@ def boot_sperren(request,pk):
         if request.POST.__contains__('Sperren'):
             boat.sperrung = True
             boat.save()
-            recipient = Reservierung.objects.filter(reserviertesBoot=pk)
+            recipient = models.Reservierung.objects.filter(reserviertesBoot=pk)
             message = "{} wurde gesperrt. Sie wurden Aufgrund ihrer Reservierung benarichtigt.".format(boat.name)
             email_from = settings.EMAIL_HOST_USER
             recipient_list = []
