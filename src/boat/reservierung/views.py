@@ -328,7 +328,16 @@ def boot_sperren(request,pk):
         if request.POST.__contains__('Sperren'):
             boat.sperrung = True
             boat.save()
-            recipient = User.objects.filter()
+            recipient = Reservierung.objects.filter(reserviertesBoot=pk)
+            message = "{} wurde gesperrt. Sie wurden Aufgrund ihrer Reservierung benarichtigt.".format(boat.name)
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = []
+            for user in recipient:
+                if user.a_Datum < datetime.date.today() and user.e_Datum < datetime.date.today():
+                    pass
+                else:
+                    recipient_list.append(user.reserviert_von.email)
+            send_mail('Sperrung des Bootes',message,email_from,recipient_list)
 
             return HttpResponseRedirect(reverse('reservierung:boote'))
         elif request.POST.__contains__('Entsperren'):
