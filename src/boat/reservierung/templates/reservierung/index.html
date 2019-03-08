@@ -31,6 +31,7 @@
             <th>Ziel</th>
             <th>Anlegeplatz</th>
             <th>Reserviert von</th>
+            <th>E-Mail</th>
             <th>Details</th>
           </thead>
           <tbody>
@@ -41,6 +42,7 @@
       <td>{{ reserv.ziel }}</td>
       <td>{{ reserv.anlegeplatz }}</td>
       <td>{{ reserv.reserviert_von }}</td>
+      <td>{{ reserv.reserviert_von.email }}</td>
       <td id="r_details"><a href="{% url 'reservierung:detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
     </tr>
     {% if forloop.last %}

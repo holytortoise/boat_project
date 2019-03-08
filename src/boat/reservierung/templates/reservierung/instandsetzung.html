@@ -4,7 +4,16 @@
 {% load bootstrap3 %}
 {% block titel %}Instandsetzung {{boat.name}}{% endblock titel %}
 {% block head %}
+<script src="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.js' %}"></script>
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.theme.css' %}">
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.theme.css' %}">
+<link rel="stylesheet" href="{% static 'jquery/jquery-ui-1.12.1.custom/jquery-ui.structure.css' %}">
 <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
+<script>
+  $(function(){
+    $("#id_geplant_am").datepicker({dateFormat:'yy-mm-dd'});
+  });
 {% endblock head %}
 {% block content %}
 <h1>{{boat.name}}</h1>
@@ -19,7 +28,7 @@
     {% if eintrag.geplant_am == None %}
         <td>Ausstehend</td>
     {% else %}
-        <td>{{eintrag.geplant_am}}</td>
+        <td id="id_geplant_am">{{eintrag.geplant_am}}</td>
     {% endif %}
     {% if eintrag.durchfuehrung_durch == None %}
           <td>Ausstehend</td>
