@@ -22,4 +22,8 @@ urlpatterns = [
     path('reservierung/einweisung/update/<int:pk>/', views.EinweisungUpdate.as_view(), name='einweisung-update'),
     path('reservierung/boote/instandsetzung/sperren/<int:pk>/', views.boot_sperren, name='boot-sperren'),
     path('reservierung/boote/instandsetzung/update/<int:pk>', views.InstandsetzungUpdate.as_view(), name='instandsetzung-update'),
+    path('reservierung/boote/regeln', views.RegelList.as_view(), name='regel-list'),
+    path('reservierung/boote/regel_create', views.RegelCreate.as_view(), name='regel-create'),
+    path('reservierung/boote/regel_update/<int:pk>', views.RegelUpdate.as_view(), name='regel-update'),
+    path('reservierung/boote/regel_delete/<int:pk>', views.RegelUpdate.as_view(), name='regel-delete'),
 ]

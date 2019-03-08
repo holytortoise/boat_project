@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 {% extends "base.html" %}
-{% block titel %}Reservierung Löschen{% endblock titel %}
+{% block titel %} Löschen{% endblock titel %}
 {% block content %}
 
-  <h1>Reservierung wirklich löschen?</h1>
-  <form class="" method="post">
-    {% csrf_token %}
-    <p>Wollen sie "{{object}}" wirklich löschen?</p>
-    <input class="btn btn-danger" type="submit" name="" value="Confirm">
-  </form>
+<h3>Regel update</h3>
+
 {% endblock content %}

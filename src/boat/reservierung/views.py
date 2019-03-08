@@ -74,6 +74,7 @@ class EinweisungDetail(LoginRequiredMixin, DetailView):
 
 class EinweisungUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin, UpdateView):
     permission_required = 'reservierung.can_change_einweisung'
+    raise_exception = True
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
     model = models.Einweisung
@@ -100,6 +101,42 @@ class InstandsetzungUpdate(LoginRequiredMixin, UpdateView):
 
 
 class RegelList(LoginRequiredMixin, ListView):
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    queryset = models.Regeln.objects.order_by('id')
+    context_object_name = 'regel'
+    template_name = 'reservierung/regeln.html'
+
+class RegelCreate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,CreateView):
+    permission_required = 'reservierung.can_add_regel'
+    raise_exception = True
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = models.Regeln
+    success_url = reverse_lazy('reservierung:regel-list')
+    template_name = "reservierung/regeln_create.html"
+    fields = ['regel']
+
+class RegelUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,ListView):
+    permission_required = 'reservierung.can_change_regel'
+    raise_exception = True
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = model.Regeln
+    success_url = reverse_lazy('reservierung:regel-list')
+    template_name = 'reservierung/regeln_update.html'
+    fields = ['regel']
+
+class RegelDelete(LoginRequiredMixin, PermissionRequiredMixin, AccessMixin, DeleteView):
+    permission_required = 'reservierung.can_delete_regel'
+    raise_exception = True
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = model.Regeln
+    success_url = reverse_lazy('reservierung:regel-list')
+    template_name = 'reservierung/regeln_delete.html'
+    fields = ['regel']
+
 
 @login_required(login_url='account:login')
 def boot_liste(request):
