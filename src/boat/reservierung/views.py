@@ -382,7 +382,7 @@ def boot_sperren(request,pk):
                 else:
                     recipient_list.append(user.reserviert_von.email)
             for staff_user in staff:
-                if staff_user.email = '':
+                if staff_user.email == '':
                     pass
                 else:
                     recipient_list_staff.append(staff_user.email)
