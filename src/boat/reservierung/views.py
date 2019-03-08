@@ -327,7 +327,8 @@ def boot_sperren(request,pk):
             boat.sperrung = True
             boat.save()
             return HttpResponseRedirect(reverse('reservierung:boote'))
-        else if request.POST.__contains__('Entsperren'):
+        elif request.POST.__contains__('Entsperren'):
             boat.sperrung = False
             boat.save()
+            return HttpResponseRedirect(reverse('reservierung:boote'))
     return render(request, 'sperren.html', context_dict)
