@@ -186,6 +186,8 @@ def reservierung_form(request):
                 reserv.reserviertesBoot = models.Boot.objects.get(id=form.cleaned_data.get("reserviertesBoot"))
                 reserv.a_Datum = form.cleaned_data.get("a_Datum")
                 reserv.e_Datum = form.cleaned_data.get("e_Datum")
+                reserv.ziel = form.cleaned_data.get("ziel")
+                reserv.anlegeplatz = form.cleaned_data.get("anlegeplatz")
                 reserv.save()
                 send_mail('Reservierung',message,email_from,recipient_list)
                 return HttpResponseRedirect(reverse('reservierung:index'))
@@ -326,6 +328,8 @@ def boot_sperren(request,pk):
         if request.POST.__contains__('Sperren'):
             boat.sperrung = True
             boat.save()
+            recipient = User.objects.filter()
+
             return HttpResponseRedirect(reverse('reservierung:boote'))
         elif request.POST.__contains__('Entsperren'):
             boat.sperrung = False
