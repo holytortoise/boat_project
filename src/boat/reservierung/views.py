@@ -63,12 +63,14 @@ class EinweisungDelete(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin, D
     success_url = reverse_lazy('reservierung:einweisung-list')
     template_name = 'reservierung/einweisung_delete.html'
 
+
 class EinweisungDetail(LoginRequiredMixin, DetailView):
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
     model = models.Einweisung
     context_object_name = 'einweisung'
     template_name = 'reservierung/einweisung_detail.html'
+
 
 class EinweisungUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin, UpdateView):
     permission_required = 'reservierung.can_change_einweisung'
@@ -96,6 +98,8 @@ class InstandsetzungUpdate(LoginRequiredMixin, UpdateView):
     template_name = 'reservierung/instandsetzung_update.html'
     fields = ['eintrag', 'geplant_am', 'durchfuehrung_durch']
 
+
+class RegelList(LoginRequiredMixin, ListView):
 
 @login_required(login_url='account:login')
 def boot_liste(request):
@@ -329,15 +333,25 @@ def boot_sperren(request,pk):
             boat.sperrung = True
             boat.save()
             recipient = models.Reservierung.objects.filter(reserviertesBoot=pk)
-            message = "{} wurde gesperrt. Sie wurden Aufgrund ihrer Reservierung benarichtigt.".format(boat.name)
+            message_user = "{} wurde gesperrt durch {}. Sie wurden Aufgrund ihrer Reservierung benarichtigt.".format(boat.name)
+            message_staff = "{} wurde durch {} gesperrt. Sie wurden Aufgrund ihres Admins Statuses benachrichtigt.".format(boat.name,request.user)
             email_from = settings.EMAIL_HOST_USER
             recipient_list = []
+            recipient_list_staff = []
+            staff = User.objects.filter(is_staff=True)
             for user in recipient:
                 if user.a_Datum < datetime.date.today() and user.e_Datum < datetime.date.today():
                     pass
                 else:
                     recipient_list.append(user.reserviert_von.email)
-            send_mail('Sperrung des Bootes',message,email_from,recipient_list)
+            for staff_user in staff:
+                if staff_user.email = '':
+                    pass
+                else:
+                    recipient_list_staff.append(staff_user.email)
+
+            send_mail('Sperrung des Bootes',message_user,email_from,recipient_list)
+            send_mail('Sperrung des Bootes',message_staff,email_from,recipient_list_staff)
             return HttpResponseRedirect(reverse('reservierung:boote'))
         elif request.POST.__contains__('Entsperren'):
             boat.sperrung = False

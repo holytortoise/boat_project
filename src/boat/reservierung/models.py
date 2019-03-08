@@ -89,3 +89,7 @@ class Instandsetzung(models.Model):
 
     class Meta:
         ordering = ['boot']
+
+
+class Regeln(models.Model):
+    regel = models.TextField(default="N/A")
