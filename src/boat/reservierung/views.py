@@ -338,7 +338,6 @@ def boot_sperren(request,pk):
                 else:
                     recipient_list.append(user.reserviert_von.email)
             send_mail('Sperrung des Bootes',message,email_from,recipient_list)
-
             return HttpResponseRedirect(reverse('reservierung:boote'))
         elif request.POST.__contains__('Entsperren'):
             boat.sperrung = False
