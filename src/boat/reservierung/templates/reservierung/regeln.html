@@ -9,9 +9,31 @@
 {% block content %}
 <h3>Liste der Regeln</h3>
 
+{% for regel in regeln %}
+    {% if forloop.first %}
+        <table>
+          <thead>
+            <th>Nr</th>
+            <th>Regel</th>
+            {% if user.is_staff %}
+                <th>Ändern</th>
+                <th>Löschen</th>
+            {% endif %}
+          </thead>
+    {% endif %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ regel.regel }}</td>
+        {% if user.is_staff %}
+            <td><a class="btn btn-warning" href="{{ url 'reservierung:regel-update' pk=regel.id }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a class="btn btn-danger" href="{{ url 'reservierung:regel-delete' pk=regel.id }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+        {% endif %}
 
+      </tr>
 
-<a href="#">Erstellen</a>
-<a href="#">Ändern</a>
-<a href="#">Löschen</a>
+{% endfor %}
+
+</table>
+<a href="{{ url 'reservierung:regel-create'}}">Erstellen</a>
+
 {% endblock content %}
