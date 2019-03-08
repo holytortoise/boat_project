@@ -122,7 +122,7 @@ class RegelUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,ListVi
     raise_exception = True
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
-    model = model.Regeln
+    model = models.Regeln
     success_url = reverse_lazy('reservierung:regel-list')
     template_name = 'reservierung/regeln_update.html'
     fields = ['regel']
@@ -132,7 +132,7 @@ class RegelDelete(LoginRequiredMixin, PermissionRequiredMixin, AccessMixin, Dele
     raise_exception = True
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
-    model = model.Regeln
+    model = models.Regeln
     success_url = reverse_lazy('reservierung:regel-list')
     template_name = 'reservierung/regeln_delete.html'
     fields = ['regel']
