@@ -17,6 +17,7 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_RESERVIERUNG_DIR = os.path.join(BASE_DIR, 'reservierung/templates/reservierung')
 TEMPLATE_ACCOUNT_DIR = os.path.join(BASE_DIR,'account/templates/account')
+TEMPLATE_BLOG_DIR = os.path.join(BASE_DIR,'blog/templates/blog')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # Quick-start development settings - unsuitable for production
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'mailer',
     'account',
     'reservierung',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'boat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_RESERVIERUNG_DIR,TEMPLATE_ACCOUNT_DIR,],
+        'DIRS': [TEMPLATE_RESERVIERUNG_DIR,TEMPLATE_ACCOUNT_DIR,TEMPLATE_BLOG_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
