@@ -117,7 +117,7 @@ class RegelCreate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,Create
     fields = ['regel']
 
 class RegelUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,ListView):
-    permission_required = 'reservierung.can_change_regel'
+    permission_required = 'reservierung.can_change_regeln'
     raise_exception = True
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
