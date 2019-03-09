@@ -104,7 +104,6 @@ class RegelList(LoginRequiredMixin, ListView):
     login_url = 'account:login'
     redirect_field_name = 'redirect_to'
     queryset = models.Regeln.objects.order_by('id')
-    context_object_name = 'regeln'
     template_name = 'reservierung/regeln.html'
 
 class RegelCreate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,CreateView):
