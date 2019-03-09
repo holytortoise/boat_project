@@ -23,11 +23,11 @@
           </thead>
     {% endif %}
       <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ regel.regel }}</td>
+        <td style="padding:1em; margin: 1em;">{{ forloop.counter }}</td>
+        <td style="padding:1em; margin: 1em;">{{ regel.regel }}</td>
         {% if user.is_staff %}
-            <td><a class="btn btn-warning" href="{% url 'reservierung:regel-update' pk=regel.id %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            <td><a class="btn btn-danger" href="{% url 'reservierung:regel-delete' pk=regel.id %}"><span class="glyphicon glyphicon-remove"></span></a></td>
+            <td style="padding:1em; margin: 1em;"><a class="btn btn-warning" href="{% url 'reservierung:regel-update' pk=regel.id %}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td style="padding:1em; margin: 1em;"><a class="btn btn-danger" href="{% url 'reservierung:regel-delete' pk=regel.id %}"><span class="glyphicon glyphicon-remove"></span></a></td>
         {% endif %}
 
       </tr>
