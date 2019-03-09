@@ -116,7 +116,7 @@ class RegelCreate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,Create
     template_name = "reservierung/regeln_create.html"
     fields = ['regel']
 
-class RegelUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,ListView):
+class RegelUpdate(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin ,UpdateView):
     permission_required = 'reservierung.can_change_regeln'
     raise_exception = True
     login_url = 'account:login'
