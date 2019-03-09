@@ -93,3 +93,6 @@ class Instandsetzung(models.Model):
 
 class Regeln(models.Model):
     regel = models.TextField(default="N/A")
+
+    def __str__(self):
+        return "{}".format(self.regel)
