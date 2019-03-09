@@ -1,8 +1,17 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.generic import TemplateView, ListView, DetailView
+from django.view.generic.edit import CreateView,UpdateView,DeleteView,FormView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, AccessMixin
 from .models import Post
 
+
 # Create your views here.
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html',{'posts':posts,})
+class PostList(LoginRequiredMixin, ListView)
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = Post
+    paginate_by = 10
+    queryset = models.Blog.objects.order_by('published_date')
+    context_object_name = 'posts'
+    template_name = 'blog/post_list.html'
