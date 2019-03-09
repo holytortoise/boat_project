@@ -14,11 +14,11 @@
     {% if forloop.first %}
         <table>
           <thead>
-            <th>Nr</th>
-            <th>Regel</th>
+            <th style="padding:1em; margin: 1em;">Nr</th>
+            <th style="padding:1em; margin: 1em;">Regel</th>
             {% if user.is_staff %}
-                <th>Ändern</th>
-                <th>Löschen</th>
+                <th style="padding:1em; margin: 1em;">Ändern</th>
+                <th style="padding:1em; margin: 1em;">Löschen</th>
             {% endif %}
           </thead>
     {% endif %}
