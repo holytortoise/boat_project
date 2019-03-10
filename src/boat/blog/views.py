@@ -5,7 +5,7 @@ from django.view.generic.edit import CreateView,UpdateView,DeleteView,FormView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, AccessMixin
 from django.contrib.auth.decorators import login_required
 from .models import Post
-import .forms
+from . import forms
 
 # Create your views here.
 class PostList(LoginRequiredMixin, ListView):
