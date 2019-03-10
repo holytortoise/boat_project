@@ -385,7 +385,6 @@ def boot_sperren(request,pk):
                     pass
                 else:
                     recipient_list_staff.append(staff_user.email)
-
             send_mail('Sperrung des Bootes',message_user,email_from,recipient_list)
             send_mail('Sperrung des Bootes',message_staff,email_from,recipient_list_staff)
             return HttpResponseRedirect(reverse('reservierung:boote'))

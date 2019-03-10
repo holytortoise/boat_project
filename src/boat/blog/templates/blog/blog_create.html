@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block titel %}Post erstellen{% endblock titel %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/reservierung.css' %}">
+{% endblock head %}
+{% block content %}
+<h1>Post erstellen</h1>
+<hr>
+<br>
+<form method="post">
+  {% csrf_token %}
+  {% bootstrap_form form %}
+  <input type="submit" name="Speichern" value="Speichern">
+  <br>
+  <input type="submit" name="Veröffentlichen" value="Veröffentlichen">
+</form>
+
+{% endblock content %}
