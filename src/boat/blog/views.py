@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView,UpdateView,DeleteView,FormView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, AccessMixin
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
 from .models import Post
 from . import forms
 
