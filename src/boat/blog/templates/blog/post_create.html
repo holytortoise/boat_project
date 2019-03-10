@@ -13,9 +13,9 @@
 <form method="post">
   {% csrf_token %}
   {% bootstrap_form form %}
-  <input type="submit" name="Speichern" value="Speichern">
+  <input style="padding:1em;" class="btn btn-info" type="submit" name="Speichern" value="Speichern">
   <br>
-  <input type="submit" name="Veröffentlichen" value="Veröffentlichen">
+  <input style="padding:1em;" class="btn btn-primary" type="submit" name="Veröffentlichen" value="Veröffentlichen">
 </form>
 
 {% endblock content %}
