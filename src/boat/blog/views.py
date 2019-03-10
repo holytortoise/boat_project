@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
-from django.generic import TemplateView, ListView, DetailView
-from django.view.generic.edit import CreateView,UpdateView,DeleteView,FormView
+from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic.edit import CreateView,UpdateView,DeleteView,FormView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, AccessMixin
 from django.contrib.auth.decorators import login_required
 from .models import Post
