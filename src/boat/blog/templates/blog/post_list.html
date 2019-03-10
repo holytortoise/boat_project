@@ -8,8 +8,12 @@
 {% block content %}
   <h1>Blogposts</h1>
   {% for post in posts  %}
-      <h2><a href='#'>{{post.title}}</a></h2>
-      <p>{{post.author}}  {{post.published_date}}</p>
+    {% if post.publis == None %}
+
+    {% else %}
+    <h2><a href='#'>{{post.title}}</a></h2>
+    <p>{{post.author}}  {{post.published_date}}</p>
+    {% endif %}
   {% endfor %}
 <br>
 <a class="btn btn-primary" href="{% url 'blog:post-create' %}">Post erstellen</a>
