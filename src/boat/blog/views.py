@@ -27,7 +27,7 @@ def postCreate(request):
                 post = Post()
                 post.author = author
                 post.text = form.cleaned_data.get('text')
-                post.created_date = datetime.datetime.now()
+                post.created_date = timezone.now()
                 post.title = form.cleaned_data.get('title')
                 post.save()
                 return HttpResponseRedirect(reverse('blog:post-list'))
@@ -35,8 +35,8 @@ def postCreate(request):
                 post = Post()
                 post.author = author
                 post.text = form.cleaned_data.get('text')
-                post.created_date = datetime.datetime.now()
-                post.published_date = datetime.datetime.now()
+                post.created_date = timezone.now()
+                post.published_date = timezone.now()
                 post.title = form.cleaned_data.get('title')
                 post.save()
                 return HttpResponseRedirect(reverse('blog:post-list'))
