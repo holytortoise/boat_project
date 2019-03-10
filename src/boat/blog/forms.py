@@ -4,4 +4,4 @@ import datetime
 
 class PostCreateForm(forms.Form):
     title = forms.CharField(max_length=200,label='Titel')
-    text = forms.TextField(label='Inhalt')
+    text = forms.TextInput(label='Inhalt')
