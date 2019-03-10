@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block titel %}Post Detail{% endblock titel %}
+{% block content %}
+<h1>{{ post.title}}</h1>
+<h3>{{post.author}}</h3>
+<p>{{post.text}}</p>
+<hr><br>
+<p>Erstellt am: {{post.created_date}}</p>
+<br>
+<p>Veröffentlicht am: {{post.published_date}}</p>
+
+<a class="btn btn-danger" href="#">Löschen</a>
+<a class="btn btn-warning" href="#">Ändern</a>
+{% endblock content %}
