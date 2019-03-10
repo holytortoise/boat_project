@@ -8,7 +8,7 @@
 {% block content %}
   <h1>Blogposts</h1>
   {% for post in posts  %}
-    {% if post.publis == None %}
+    {% if post.published_date == None %}
 
     {% else %}
     <h2><a href='#'>{{post.title}}</a></h2>
