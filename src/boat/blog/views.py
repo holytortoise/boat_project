@@ -19,6 +19,14 @@ class PostList(LoginRequiredMixin, ListView):
     context_object_name = 'posts'
     template_name = 'blog/post_list.html'
 
+
+class PostDetail(LoginRequiredMixin, DetailView):
+    login_url= 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = Post
+    context_object_name = 'post'
+    template_name = 'blog/post_detail.html'
+
 @login_required(login_url='account:login')
 def postCreate(request):
     author = request.user
