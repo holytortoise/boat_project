@@ -3,12 +3,11 @@
 {% block titel %}Post Detail{% endblock titel %}
 {% block content %}
 <h1>{{ post.title}}</h1>
-<hr>
 <h6>{{post.author}}</h6>
-<br>
+<hr>
 <p>{{post.text}}</p>
 <hr><br>
-<h6>Erstellt am: {{post.created_date}} Veröffentlicht am: {{post.published_date}}</h6>
+<h6><bold>Erstellt am:</bold> {{post.created_date}}       <bold>Veröffentlicht am:</bold> {{post.published_date}}</h6>
 
 <a class="btn btn-danger" href="{% url 'blog:post-delete' pk=post.id %}">Löschen</a>
 <a class="btn btn-warning" href="{% url 'blog:post-update' pk=post.id %}">Ändern</a>
