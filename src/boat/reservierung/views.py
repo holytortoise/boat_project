@@ -191,6 +191,16 @@ def reservierung_form(request):
             free_boats = []
             reservierungen = models.Reservierung.objects.filter(
                 reserviertesBoot=form.cleaned_data.get("reserviertesBoot"))
+            einweisung = models.Einweisung.objects.get(user=request.user,boot=form.cleaned_data.get("reserviertesBoot"))
+            if einweisung.exists():
+                if einweisung.einweisung:
+                    pass
+                else:
+                    return HttpResponse("Keine Einweisung auf das Boot")
+            else:
+                return HttpResponse("Keine Einweisung auf das Boot")
+            if(models.Reservierung.objects.filter(reserviert_von=request.user).__len__() >= 2):
+                return HttpResponse("Mehr als 2 reservierungen nicht erlaubt")            
             if reservierungen.exists():
                 for reservierung in reservierungen:
                     if reservierung.a_Datum < form.cleaned_data.get("a_Datum") and form.cleaned_data.get("a_Datum") < reservierung.e_Datum:
