@@ -27,14 +27,60 @@
   <tr>
     <td id="r_anfang">{{ reserv.a_Datum|date:"d.m.o"}} {{ reserv.a_Zeit|date:"H:i" }}</td>
     <td id="r_ende">{{ reserv.e_Datum|date:"d.m.o"}} {{ reserv.e_Zeit|date:"H:i" }}</td>
-
-    <td id="r_details"><a href="{% url 'reservierung:detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span> Details</a></td>
+    <td id="r_details"><a href="{% url 'reservierung:detail' pk=reserv.id %}"><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
   </tr>
   {% if forloop.last %}
   </tbody>
 </table>
   {% endif %}
   {% endfor %}
+{% endfor %}
+{% for saved_post in saved_posts  %}
+    {% if forloop.first %}
+    <div class="wrapper">
+      <h2 class="top">Gespeicherte Posts</h2>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <th>Titel</th>
+          <th>geschrieben am</th>
+          <th>Details</th>
+        </thead>
+        <tbody>
+  {% endif %}
+  <tr>
+    <td id="r_anfang">{{ saved_post.title }}</td>
+    <td id="r_ende">{{ saved_post.created_date|date:"d.m.o"}}</td>
+    <td id="r_details"><a href=""><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
+  </tr>
+  {% if forloop.last %}
+  </tbody>
+</table>
+  {% endif %}
+{% endfor %}
+
+{% for published_post in published_posts  %}
+    {% if forloop.first %}
+    <div class="wrapper">
+      <h2 class="top">Veröffentlichte Posts</h2>
+      </div>
+      <table class="table table-bordered">
+        <thead>
+          <th>Titel</th>
+          <th>Veröffentlicht am</th>
+          <th>Details</th>
+        </thead>
+        <tbody>
+  {% endif %}
+  <tr>
+    <td id="r_anfang">{{ published_post.title }}</td>
+    <td id="r_ende">{{ published_post.created_date|date:"d.m.o"}}</td>
+    <td id="r_details"><a href=""><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
+  </tr>
+  {% if forloop.last %}
+  </tbody>
+</table>
+  {% endif %}
 {% endfor %}
 <div class="wrapper">
 <h3 id='password_change'><a class="btn btn-primary" href="{% url 'account:password-change' %}">Passwort ändern</a></h3>

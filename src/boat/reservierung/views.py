@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 import datetime
 from . import models
 from . import forms
+from blog import models as b_models
 # Create your views here.
 
 class ReservierungsList(LoginRequiredMixin, ListView):
@@ -267,7 +268,8 @@ def reservierung_user(request):
     user = request.user
     boats = models.Boot.objects.all()
     boats_return = []
-
+    saved_posts = b_models.Post.objects.filter(author=user,published_date__isnull=True)
+    published_posts = b_models.Post.objects.filter(author=user).exclude(published_date__isnull=True)
     for boat in boats:
         boat_return = []
         reservierungen = models.Reservierung.objects.filter(
@@ -276,7 +278,9 @@ def reservierung_user(request):
             if reservierung.reserviert_von == user:
                 boat_return.append(reservierung)
         boats_return.append(boat_return)
-    return render(request, 'reservierung/reservierung_user.html',{'user':user,'boats_return':boats_return})
+    return render(request, 'reservierung/reservierung_user.html',
+    {'user':user,'boats_return':boats_return,'saved_posts':saved_posts,
+    'published_posts':published_posts})
 
 @login_required(login_url='account:login')
 @permission_required('reservierung.can_add_boot', raise_exception=True)
