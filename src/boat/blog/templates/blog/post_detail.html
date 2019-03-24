@@ -11,4 +11,5 @@
 
 <a class="btn btn-danger" href="{% url 'blog:post-delete' pk=post.id %}">Löschen</a>
 <a class="btn btn-warning" href="{% url 'blog:post-update' pk=post.id %}">Ändern</a>
+<a class="btn btn-success" href="{% url 'blog:post-publish' pk=post.id %}">Veröffentlichen</a>
 {% endblock content %}

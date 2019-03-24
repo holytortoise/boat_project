@@ -44,7 +44,6 @@
         <thead>
           <th>Titel</th>
           <th>geschrieben am</th>
-          <th>veröffentlichen</th>
           <th>Löschen</th>
           <th>Details</th>
         </thead>
@@ -53,7 +52,6 @@
   <tr>
     <td id="r_anfang">{{ saved_post.title }}</td>
     <td id="r_ende">{{ saved_post.created_date|date:"d.m.o"}}</td>
-    <td><a class="btn btn-success" href="#"><span class"glyphicon glyphicon-ok"></span>Veröffentlichen</a></td>
     <td><a class="btn btn-danger" href="{% url 'blog:post-delete' pk=saved_post.id %}"><span class"glyphicon glyphicon-remove"></span>Löschen</a></td>
     <td id="r_details"><a href="{% url 'blog:post-detail' pk=saved_post.id %}"><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
   </tr>

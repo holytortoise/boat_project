@@ -70,3 +70,8 @@ def postCreate(request):
     else:
         form = forms.PostCreateForm()
         return render(request,'blog/post_create.html',{'form':form})
+
+@login_required(login_url='account:login')
+def postPublish(request,pk):
+    Post.objects.get(id=pk).publish()
+    return HttpResponseRedirect(reverse('blog:post-list'))
