@@ -44,6 +44,8 @@
         <thead>
           <th>Titel</th>
           <th>geschrieben am</th>
+          <th>veröffentlichen</th>
+          <th>Löschen</th>
           <th>Details</th>
         </thead>
         <tbody>
@@ -51,7 +53,9 @@
   <tr>
     <td id="r_anfang">{{ saved_post.title }}</td>
     <td id="r_ende">{{ saved_post.created_date|date:"d.m.o"}}</td>
-    <td id="r_details"><a href=""><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
+    <td><a href="#"><span class"glyphicon glyphicon-ok"></span></a></td>
+    <td><a href="#"><span class"glyphicon glyphicon-remove"></span></a></td>
+    <td id="r_details"><a href="{% url 'blog:post-detail' pk=saved_post.id %}"><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
   </tr>
   {% if forloop.last %}
   </tbody>
@@ -68,6 +72,7 @@
         <thead>
           <th>Titel</th>
           <th>Veröffentlicht am</th>
+          <th>Löschen</th>
           <th>Details</th>
         </thead>
         <tbody>
@@ -75,7 +80,7 @@
   <tr>
     <td id="r_anfang">{{ published_post.title }}</td>
     <td id="r_ende">{{ published_post.created_date|date:"d.m.o"}}</td>
-    <td id="r_details"><a href=""><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
+    <td id="r_details"><a href="{% url 'blog:post-detail' pk=published_post.id %}"><span class="glyphicon glyphicon-info-sign"></span>Details</a></td>
   </tr>
   {% if forloop.last %}
   </tbody>
