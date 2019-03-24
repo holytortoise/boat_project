@@ -30,7 +30,7 @@ class ReservierungDelete(LoginRequiredMixin,PermissionRequiredMixin,AccessMixin,
     login_url = 'account:login'
     redirect_field_name : 'redirect_to'
     model = models.Reservierung
-    success_url = reverse_lazy('reservierung:list')
+    success_url = reverse_lazy('reservierung:index')
     template_name = 'reservierung/reservierung_delete.html'
 
 
