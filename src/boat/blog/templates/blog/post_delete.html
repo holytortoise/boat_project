@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block titel %}Post Löschen{% endblock titel %}
+{% block content %}
+
+  <h1>Post wirklich löschen?</h1>
+  <form class="" method="post">
+    {% csrf_token %}
+    <p>Wollen sie "{{object.title}}" wirklich löschen?</p>
+    <input class="btn btn-danger" type="submit" name="Bestätigen" value="Bestätigen">
+  </form>
+{% endblock content %}
