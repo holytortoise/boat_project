@@ -7,9 +7,14 @@
 <hr>
 <pre>{{post.text}}</pre>
 <hr><br>
-<h6><b>Author:</b>{{post.author}} <b>Erstellt am:</b> {{post.created_date}} <b>Veröffentlicht am:</b> {{post.published_date}}</h6>
+<h6><b>Author:</b>{{post.author}}<br> <b>Erstellt am:</b> {{post.created_date}}<br> <b>Veröffentlicht am:</b> {{post.published_date}}</h6>
 
+{% if user|is_creator:post.author or user.is_superuser  %}
 <a class="btn btn-danger" href="{% url 'blog:post-delete' pk=post.id %}">Löschen</a>
 <a class="btn btn-warning" href="{% url 'blog:post-update' pk=post.id %}">Ändern</a>
+{% endif %}
+{% if user|is_creator:post.author  %}
 <a class="btn btn-success" href="{% url 'blog:post-publish' pk=post.id %}">Veröffentlichen</a>
+{% endif %}
+
 {% endblock content %}
