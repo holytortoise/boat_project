@@ -39,7 +39,10 @@
 {% endfor %}
 
 
-
+{% if user.is_staff %}
 <a class="btn btn-primary" href="{% url 'reservierung:regel-create'%}">Regel Erstellen</a>
+  
+{% endif %}
+
 
 {% endblock content %}
