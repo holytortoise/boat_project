@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import permission_required
 from django.core.mail import send_mail, send_mass_mail
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 import datetime
 from . import models
 from . import forms
@@ -191,13 +192,13 @@ def reservierung_form(request):
             free_boats = []
             reservierungen = models.Reservierung.objects.filter(
                 reserviertesBoot=form.cleaned_data.get("reserviertesBoot"))
-            einweisung = models.Einweisung.objects.filter(user=request.user,boot=form.cleaned_data.get("reserviertesBoot"))
-            if einweisung.exists():
+            try:
+                einweisung = models.Einweisung.objects.get(user=request.user,boot=form.cleaned_data.get("reserviertesBoot"))
                 if einweisung.einweisung:
                     pass
                 else:
                     return HttpResponse("Keine Einweisung auf das Boot")
-            else:
+            except ObjectDoesNotExist:
                 return HttpResponse("Keine Einweisung auf das Boot")
             if(models.Reservierung.objects.filter(reserviert_von=request.user).__len__() >= 2):
                 return HttpResponse("Mehr als 2 reservierungen nicht erlaubt")
