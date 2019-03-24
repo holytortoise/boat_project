@@ -10,6 +10,6 @@
 <br>
 <p>Veröffentlicht am: {{post.published_date}}</p>
 
-<a class="btn btn-danger" href="#">Löschen</a>
-<a class="btn btn-warning" href="#">Ändern</a>
+<a class="btn btn-danger" href="{% url 'blog:post-delete' pk=post.id %}">Löschen</a>
+<a class="btn btn-warning" href="{% url 'blog:post-update' pk=post.id %}">Ändern</a>
 {% endblock content %}

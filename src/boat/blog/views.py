@@ -27,6 +27,23 @@ class PostDetail(LoginRequiredMixin, DetailView):
     context_object_name = 'post'
     template_name = 'blog/post_detail.html'
 
+
+class PostUpdate(LoginRequiredMixin, DetailView):
+    login_url = 'account:login'
+    redirect_field_name = 'redirect_to'
+    model = Post
+    success_url = reverse_lazy('blog:post-list')
+    template_name = 'post_update.html'
+    fields = ['title','text']
+
+
+class PostDelete(LoginRequiredMixin, DeleteView):
+    login_url = 'account:login'
+    redirect_field_name : 'redirect_to'
+    model = Post
+    success_url = reverse_lazy('blog:post-list')
+    template_name = 'post_delete.html'
+
 @login_required(login_url='account:login')
 def postCreate(request):
     author = request.user
