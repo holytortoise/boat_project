@@ -1,0 +1,4 @@
+#!/bin/bash
+cd /home/boat/boat_project
+source boat_env/bin/activate
+python3 boat_project/src/boat/manage.py alte_reservierungen
