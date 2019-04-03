@@ -26,11 +26,12 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li><a href="{% url 'blog:post-list' %}">Blog</a></li>
+          <li><a href="{% url 'blog:post-list' %}">Beiträge</a></li>
           <li><a href="{% url 'reservierung:boote' %}">Boote</a></li>
+          <li><a href="{% url 'reservierung:regel-list' %}">Regeln</a></li>
           <li><a href="{% url 'reservierung:form' %}">Reservieren</a></li>
           <li><a href="{% url 'reservierung:list' %}">Alle Reservierungen</a></li>
-          <li><a href="{% url 'reservierung:regel-list' %}">Regeln</a></li>
+
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_superuser %}
