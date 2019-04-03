@@ -8,6 +8,21 @@
 {% block content %}
 
 <div class="wrapper">
+  <h1 class="top">Beiträge</h1>
+  {% for post in posts %}
+      {% if post.published_date == None %}
+      {% else %}
+      <h2><a href='{% url "blog:post-detail" pk=post.id %}'>{{post.title}}</a></h2>
+      <p>{{post.author}}  {{post.published_date}}</p>
+      {% endif %}
+  {% endfor %}
+
+</div>
+<hr>
+<br>
+<hr>
+
+<div class="wrapper">
   <h1 class="top">Reservierungen</h1>
 </div>
 <div class="wrapper">
