@@ -154,6 +154,7 @@ def index(request):
     today = datetime.date.today()
     end = today + datetime.timedelta(30)
     boats = models.Boot.objects.all()
+    posts = b_models.Post.objects.all().order_by("-published_date")[0:3]
     if boats.exists():
         boats_return = []
         for boat in boats:
@@ -172,7 +173,8 @@ def index(request):
                 reservierungen = None
         if len(boats_return) == 0:
             boats_return = None
-    context_dict = {'boats_return':boats_return,'reserv':reservierungen,'today':today,'end':end}
+    context_dict = {'boats_return':boats_return,
+    'reserv':reservierungen,'today':today,'end':end,'posts':posts,}
     return render(request,'index.html', context_dict)
 
     return render(request, 'index.html')

@@ -15,7 +15,7 @@ class PostList(LoginRequiredMixin, ListView):
     redirect_field_name = 'redirect_to'
     model = Post
     paginate_by = 6
-    queryset = Post.objects.order_by('published_date')
+    queryset = Post.objects.order_by('-published_date')
     context_object_name = 'posts'
     template_name = 'blog/post_list.html'
 
