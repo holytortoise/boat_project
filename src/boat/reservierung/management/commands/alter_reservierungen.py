@@ -15,10 +15,10 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        alter_reservierungen()
+        alte_reservierungen()
 
 
-def alter_reservierungen():
+def alte_reservierungen():
     """
     Entfernt alte Reservierungen
     """
